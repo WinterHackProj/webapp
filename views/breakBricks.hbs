@@ -1,14 +1,18 @@
 <section id="break-bricks-page">
 
     <h1>Break Bricks!!</h1>
+    <p>Score:</p>
+    <p id="score">Not Implemented..</p>
     <style>
         #div1{width: 600px; height: 600px; border: 1px solid black; position: relative; margin: 100px auto}
         #ball{width: 20px; height: 20px; background-color: red; border-radius: 50%; position: absolute}
-        #plate{width: 50px; height: 15px; background-color: blue; position: absolute; bottom: 10px; left: 275px}
+        #plate{width: 80px; height: 15px; background-color: blue; position: absolute; bottom: 10px;}
     </style>
 
     <script>
         window.onload = function(){
+            var game = "start"  // a flag variable stating the status of the game (start/over)
+            // var score = 0
             var divElement = document.getElementById("div1")
             var ballElement = document.getElementById("ball")
             var plateElement = document.getElementById("plate")
@@ -22,6 +26,7 @@
             setInterval(function(){
                 ballElement.style.left = ballElement.offsetLeft + horDirection * horSpeed + 'px'
                 ballElement.style.top = ballElement.offsetTop + verDirection * verSpeed + 'px'
+                
 
                 if (ballElement.offsetLeft >= 580){
                     horDirection = -1  // move leftwards when touching right edges
@@ -29,35 +34,67 @@
                 if (ballElement.offsetLeft <= 0){
                     horDirection = 1  // move rightwards when touching left edges
                 }
-                if (ballElement.offsetTop >= 580){
-                    verDirection = -1  // move upwards when touching bottom edges
-                }
                 if (ballElement.offsetTop <= 0){
                     verDirection = 1  // move downwards when touching upper edges
                 }
+                if (isCollide(ballElement, plateElement) == 1){  // ball touches plate
+                    verDirection = -1  // move upwards when touching plate edges 
+                    score += 1
+                }
+                if (ballElement.offsetTop >= 580){
+                    game = "over"  // finish game as the ball falls to the bottom
+                    confirm(game)
+                    window.location.reload()
+                }
+                // getElementById("score").innerHTML = score
 
             }, 30)
 
         }
+
+        
 
         // function for controlling the plate (to catch the ball)
         function plateMove(item) {
             document.onkeydown = function (event) {
                 var plateChangeX = 0
                 if (event.keyCode == 37) {  // left arrow key pressed
-                    plateChangeX -= 15
+                    if (item.offsetLeft <= 0){
+                        plateChangeX += 0
+                    }
+                    else{
+                        plateChangeX -= 15
+                    }
                 }
                 else if (event.keyCode == 39) {  // right arrow key pressed
-                    plateChangeX += 15
+                    if (item.offsetLeft >= 520){
+                        plateChangeX -= 0
+                    }
+                    else{
+                        plateChangeX += 15
+                    } 
                 }
                 item.style.left = item.offsetLeft + plateChangeX + 'px'
             }
+        }
+
+        function isCollide(ball, plate) {
+            plateLeft = parseInt(plate.style.left.slice(0, -2))  // current left edge of the plate
+            plateRight = parseInt(plate.style.left.slice(0, -2)) + 80  // current right edge of the plate
+            ballX = parseInt(ball.style.left.slice(0, -2))  // current x-coordinate of the ball's centre
+            ballY = parseInt(ball.style.top.slice(0, -2)) + 20  // current y-coordinate of the ball's bottom
+            if (ballY >= 575){  // reaching the y-coordinate of plate
+                if (plateLeft < ballX && plateRight > ballX){ // centre of the ball must lie between the left and right edges of the plate
+                    return 1
+                }
+            }
+            return 0  // no collision between ball and plate
         }
     </script>
 
     <div id = "div1">
         <div id="ball"></div>
-        <div id="plate"></div>
+        <div id="plate" style="left: 275px;"></div>
     </div>
 
 </section>
