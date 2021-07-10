@@ -15,6 +15,10 @@ app.get('/', (req, res) => {
     res.render('index')
 })
 
+app.get('/BreakBricks', (req, res) => {
+    res.render('breakBricks')
+})
+
 app.listen(process.env.PORT || 3000, () => {
     console.log('The small games app is running')
 })

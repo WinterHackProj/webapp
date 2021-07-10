@@ -1,0 +1,63 @@
+<section id="break-bricks-page">
+
+    <h1>Break Bricks!!</h1>
+    <style>
+        #div1{width: 600px; height: 600px; border: 1px solid black; position: relative; margin: 100px auto}
+        #ball{width: 20px; height: 20px; background-color: red; border-radius: 50%; position: absolute}
+        #plate{width: 50px; height: 15px; background-color: blue; position: absolute; bottom: 10px; left: 275px}
+    </style>
+
+    <script>
+        window.onload = function(){
+            var divElement = document.getElementById("div1")
+            var ballElement = document.getElementById("ball")
+            var plateElement = document.getElementById("plate")
+            plateMove(plateElement)
+
+            var horSpeed = parseInt(Math.random()*4) + 3  // ball's horizontal speed
+            var verSpeed = parseInt(Math.random()*3) + 5  // ball's vertical speed
+            var horDirection = 1  // move rightwards by default
+            var verDirection = 1  // move downwards by default
+
+            setInterval(function(){
+                ballElement.style.left = ballElement.offsetLeft + horDirection * horSpeed + 'px'
+                ballElement.style.top = ballElement.offsetTop + verDirection * verSpeed + 'px'
+
+                if (ballElement.offsetLeft >= 580){
+                    horDirection = -1  // move leftwards when touching right edges
+                }
+                if (ballElement.offsetLeft <= 0){
+                    horDirection = 1  // move rightwards when touching left edges
+                }
+                if (ballElement.offsetTop >= 580){
+                    verDirection = -1  // move upwards when touching bottom edges
+                }
+                if (ballElement.offsetTop <= 0){
+                    verDirection = 1  // move downwards when touching upper edges
+                }
+
+            }, 30)
+
+        }
+
+        // function for controlling the plate (to catch the ball)
+        function plateMove(item) {
+            document.onkeydown = function (event) {
+                var plateChangeX = 0
+                if (event.keyCode == 37) {  // left arrow key pressed
+                    plateChangeX -= 15
+                }
+                else if (event.keyCode == 39) {  // right arrow key pressed
+                    plateChangeX += 15
+                }
+                item.style.left = item.offsetLeft + plateChangeX + 'px'
+            }
+        }
+    </script>
+
+    <div id = "div1">
+        <div id="ball"></div>
+        <div id="plate"></div>
+    </div>
+
+</section>
