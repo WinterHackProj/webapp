@@ -1,0 +1,18 @@
+<section id="subjectPage"> 
+    <script>
+        // 暂未实现
+    </script>
+    <div class='subjectInfo'>
+        <p>Subject Code: {{subjectInfo.subject_code}}</p>
+        <p>Subject Name: {{subjectInfo.subject_name}}</p>
+        <p>Credit Point: {{subjectInfo.credit}}</p>
+        <form action="/subjectInfo" method="post">
+            <label for="ass1">Assignment 1:</label>
+            <input id="ass1" type="text" name="ass1"><br>
+            <label for="exam">Exam:</label>
+            <input id="exam" type="text" name="exam"><br>
+            <button type="submit" class="btn">Calculate!!</button>
+        </form>
+    </div>
+    <a href="/">Back to Homepage</a>
+</section>

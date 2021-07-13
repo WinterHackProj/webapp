@@ -1,4 +1,6 @@
 const express = require('express')
+const bodyParser = require('body-parser')
+const urlencodedParser = bodyParser.urlencoded({ extended: false })
 const app = express()
 const passport = require('passport');
 const session = require('express-session');
@@ -13,6 +15,7 @@ const Subject = subject.Subject
 
 require('./models');
 app.use(express.static('public'))
+app.use(bodyParser.urlencoded())
 const exphbs = require("express-handlebars")
 
 app.engine('hbs', exphbs({
@@ -31,8 +34,13 @@ app.get('/assignment', async (req, res) => {
     res.send(result)
 })
 app.get('/subject', async (req, res) => {
-    result = await Subject.find({})
-    res.send(result)
+    result = await Subject.find({}).lean()
+    res.render('subjectPage', {
+        subjectInfo: result[0]
+    })
+})
+app.post('/subjectInfo', urlencodedParser, async(req, res) => {
+    res.send(req.body)
 })
 
 app.listen(process.env.PORT || 3000, () => {
