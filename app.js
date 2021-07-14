@@ -39,9 +39,14 @@ app.get('/subject', async (req, res) => {
         subjectInfo: result[0]
     })
 })
+app.get('/calcDescription', urlencodedParser, async(req, res) => {
+    res.render("intro")
+})
+
 app.post('/subjectInfo', urlencodedParser, async(req, res) => {
     res.send(req.body)
 })
+
 
 app.listen(process.env.PORT || 3000, () => {
     console.log('The small games app is running')

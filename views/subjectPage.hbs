@@ -1,18 +1,28 @@
 <section id="subjectPage"> 
     <script>
-        // 暂未实现
+        function addAssignment() {
+            // 每调用一次就增加label和input
+            var subjectForm = document.getElementById("details")
+            var n_assignments = subjectForm.getElementsByTagName("label").length + 1
+            subjectForm.innerHTML += "<label for='ass'>ID:</label>".replace("ID", "Assignment " + n_assignments + ":")
+            subjectForm.innerHTML += "<input id='ass' type='text' name='ass'><br>"
+        }
     </script>
     <div class='subjectInfo'>
         <p>Subject Code: {{subjectInfo.subject_code}}</p>
         <p>Subject Name: {{subjectInfo.subject_name}}</p>
         <p>Credit Point: {{subjectInfo.credit}}</p>
+        <p>Estimate your overall grades:</p>
+        <a href="/calcDescription">Click here to read more details</a>
+        
         <form action="/subjectInfo" method="post">
-            <label for="ass1">Assignment 1:</label>
-            <input id="ass1" type="text" name="ass1"><br>
-            <label for="exam">Exam:</label>
-            <input id="exam" type="text" name="exam"><br>
+            <ul id="details">
+                <label for='ass'>Assignment 1:</label>
+                <input id='ass' type='text' name='ass'><br>
+            </ul>
             <button type="submit" class="btn">Calculate!!</button>
         </form>
+        <button onclick="addAssignment()">Click to add a new assignment/test/exam</button>
     </div>
     <a href="/">Back to Homepage</a>
 </section>
