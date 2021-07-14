@@ -4,7 +4,7 @@
             // 每调用一次就增加label和input
             var subjectForm = document.getElementById("details")
             var n_assignments = subjectForm.getElementsByTagName("label").length + 1
-            subjectForm.innerHTML += "<label for='ass'>ID:</label>".replace("ID", "Assignment " + n_assignments + ":")
+            subjectForm.innerHTML += "<label for='ass'>ID: </label>".replace("ID", "Assignment " + n_assignments)
             subjectForm.innerHTML += "<input id='ass' type='text' name='ass'><br>"
         }
     </script>
