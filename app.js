@@ -25,6 +25,12 @@ app.engine('hbs', exphbs({
 
 app.set('view engine', 'hbs')
 
+// Require routers
+const subjectRouter = require('./routes/subjectRouter')
+
+// Allocate routes
+app.use('/subject', subjectRouter)
+
 app.listen(process.env.PORT || 3000, () => {
     console.log('The small games app is running')
 })

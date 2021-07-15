@@ -8,8 +8,9 @@
             subjectForm.innerHTML += "<li class = "+ label_name + ">" + 
                                     "<label for=" + label_name + ">ID: </label>".replace("ID", "Assignment " + n_assignments) + " " +
                                     "<input id='ass' type='text' name='obtainedScore'> " + " " +
-                                    "<span> Out Of</span>" + " " +
+                                    "<span>% Out Of</span>" + " " +
                                     "<input id='ass' type='text' name='totalScore'>" + " " + 
+                                    "<span>%</span>" + " " +
                                     "<button id=" + label_name + " onclick=\"remove_ass(\'" + label_name + "\');\"><img src=\"../image/cancel.png\"></button>" +
                                     "</li>"
         }
@@ -21,9 +22,10 @@
             var subjectForm = document.getElementById("details")
             subjectForm.innerHTML = "<li class = 'ass1'>" +
                                     "<label for='ass1'>Assignment 1:</label> " +
-                                    "<input id='ass1' type='text' name='obtainedScore'>" +
-                                    "<span> Out Of</span>" + " " +
+                                    "<input id='ass1' type='text' name='obtainedScore'>" + " " +
+                                    "<span>% Out Of</span>" + " " +
                                     "<input id='ass1' type='text' name='totalScore'>" + " " +
+                                    "<span>%</span>" + " "  +
                                     "<button id='ass1' onclick=\"remove_ass('ass1');\"><img src=\"../image/cancel.png\"></button>" +
                                     "</li>"
         }
@@ -37,6 +39,18 @@
         <p>Subject Code: {{subjectInfo.subject_code}}</p>
         <p>Subject Name: {{subjectInfo.subject_name}}</p>
         <p>Credit Point: {{subjectInfo.credit}}</p>
+        <form action="" method = "post">
+            <label for = {{subjectInfo.subject_code}}>Choose your <b>Overall Target Grade</b> for {{subjectInfo.subject_code}}: </label>
+            <select name = {{subjectInfo.subject_code}} id = {{subjectInfo.subject_code}}>
+                <option value="H1">H1 80%-100%</option>
+                <option value="H2A">H2A 75%-79%</option>
+                <option value="H2B">H2B 70%-74%</option>
+                <option value="H3">H3 65%-69%</option>
+                <option value="P" selected = "selected">P 50%-64%</option>
+            </select>
+            <br><br>
+            <input type="submit" value="Save Your Target">
+        </form>
         <p>Estimate your overall grades:</p>
         <a href="/calcDescription">Click here to read more details</a>
         <button onclick="addAssignment()">Add New</button>
@@ -47,8 +61,9 @@
                 <li class = "ass1">
                     <label for='ass1'>Assignment 1:</label>
                     <input id='ass1' type='text' name='obtainedScore'>
-                    <span> Out Of</span>
+                    <span>% Out Of</span>
                     <input id='ass1' type='text' name='totalScore'>
+                    <span>%</span>
                     <button id='ass1' onclick="remove_ass('ass1');"><img src="../image/cancel.png"></button>
                 </li>
 
