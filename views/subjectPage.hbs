@@ -4,8 +4,21 @@
             // 每调用一次就增加label和input
             var subjectForm = document.getElementById("details")
             var n_assignments = subjectForm.getElementsByTagName("label").length + 1
-            subjectForm.innerHTML += "<label for='ass'>ID: </label>".replace("ID", "Assignment " + n_assignments)
-            subjectForm.innerHTML += "<input id='ass' type='text' name='ass'><br>"
+            subjectForm.innerHTML += "<label for='ass'>ID:</label> ".replace("ID", "Assignment " + n_assignments)
+            subjectForm.innerHTML += "<input id='ass' type='text' name='obtainedScore'> "
+            subjectForm.innerHTML += "<input id='ass' type='text' name='totalScore'><br>"
+        }
+        function clearAssignments(){
+            // 每调用一次就重置label和input
+            var subjectForm = document.getElementById("details")
+            subjectForm.innerHTML = "<label for='ass'>Assignment 1:</label> "
+            subjectForm.innerHTML += "<input id='ass' type='text' name='obtainedScore'> "
+            subjectForm.innerHTML += "<input id='ass' type='text' name='totalScore'><br>"
+        }
+        function checkValidity(){
+            // 提交计算之前检验输入是否有效
+            // 1：所有assignments的总分百分比之和必须为100%
+            // 2：每一个assignments的已得分数不能大于对应总分
         }
     </script>
     <div class='subjectInfo'>
@@ -14,15 +27,17 @@
         <p>Credit Point: {{subjectInfo.credit}}</p>
         <p>Estimate your overall grades:</p>
         <a href="/calcDescription">Click here to read more details</a>
+        <button onclick="addAssignment()">Add New</button>
+        <button onclick="clearAssignments()">Clear All</button>
         
         <form action="/subjectInfo" method="post">
             <ul id="details">
                 <label for='ass'>Assignment 1:</label>
-                <input id='ass' type='text' name='ass'><br>
+                <input id='ass' type='text' name='obtainedScore'>
+                <input id='ass' type='text' name='totalScore'><br>
             </ul>
             <button type="submit" class="btn">Calculate!!</button>
         </form>
-        <button onclick="addAssignment()">Click to add a new assignment/test/exam</button>
     </div>
     <a href="/">Back to Homepage</a>
 </section>
