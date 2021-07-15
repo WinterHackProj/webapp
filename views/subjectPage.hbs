@@ -4,8 +4,15 @@
             // 每调用一次就增加label和input
             var subjectForm = document.getElementById("details")
             var n_assignments = subjectForm.getElementsByTagName("label").length + 1
-            subjectForm.innerHTML += "<label for='ass'>ID: </label>".replace("ID", "Assignment " + n_assignments)
-            subjectForm.innerHTML += "<input id='ass' type='text' name='ass'><br>"
+            var label_name= "ass" + n_assignments //ass2, ass3...
+            subjectForm.innerHTML += "<li class = "+ label_name + ">" + 
+                                    "<label for=" + label_name + ">ID: </label>".replace("ID", "Assignment " + n_assignments) + " " +
+                                    "<input id=" + label_name + " type='text' name='ass'>" + " " +
+                                    "<button id=" + label_name + " onclick=\"remove_ass(\'" + label_name + "\');\"><img src=\"../image/cancel.png\"></button>" +
+                                    "</li>"
+        }
+        function remove_ass(ass_number) {
+            document.getElementsByClassName(ass_number)[0].remove();
         }
     </script>
     <div class='subjectInfo'>
@@ -17,8 +24,11 @@
         
         <form action="/subjectInfo" method="post">
             <ul id="details">
-                <label for='ass'>Assignment 1:</label>
-                <input id='ass' type='text' name='ass'><br>
+                <li class = "ass1">
+                    <label for='ass1'>Assignment 1:</label>
+                    <input id='ass1' type='text' name='ass1'>
+                    <button id='ass1' onclick="remove_ass('ass1');"><img src="../image/cancel.png"></button>
+                </li>
             </ul>
             <button type="submit" class="btn">Calculate!!</button>
         </form>
