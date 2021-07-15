@@ -18,6 +18,7 @@ const saveTargerGrade = (req, res) => {
             }
           }
     )
+    res.redirect('back')
 }
 
 // Export the functions
