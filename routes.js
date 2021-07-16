@@ -27,8 +27,4 @@ router.get('/calcDescription', urlencodedParser, async(req, res) => {
     res.render("intro")
 })
 
-router.post('/subjectInfo', urlencodedParser, async(req, res) => {
-    res.send(req.body)
-})
-
 module.exports = router

@@ -21,18 +21,13 @@
             // 每调用一次就重置label和input
             var subjectForm = document.getElementById("details")
             subjectForm.innerHTML = "<li class = 'ass1'>" +
-                                    "<label for='ass1'>Assignment 1:</label> " +
-                                    "<input id='ass1' type='text' name='obtainedScore'>" + " " +
-                                    "<span>% Out Of</span>" + " " +
-                                    "<input id='ass1' type='text' name='totalScore'>" + " " +
-                                    "<span>%</span>" + " "  +
-                                    "<button id='ass1' onclick=\"remove_ass('ass1');\"><img src=\"../image/cancel.png\"></button>" +
+                                        "<label for='ass1'>Assignment 1:</label> " +
+                                        "<input id='ass1' type='text' name='obtainedScore'>" + " " +
+                                        "<span>% Out Of</span>" + " " +
+                                        "<input id='ass1' type='text' name='totalScore'>" + " " +
+                                        "<span>%</span>" + " "  +
+                                        "<button id='ass1' onclick=\"remove_ass('ass1');\"><img src=\"../image/cancel.png\"></button>" +
                                     "</li>"
-        }
-        function checkValidity(){
-            // 提交计算之前检验输入是否有效
-            // 1：所有assignments的总分百分比之和必须为100%
-            // 2：每一个assignments的已得分数不能大于对应总分
         }
         function updateAlert(){
             alert("Successfully update your Overall Target Grade")
@@ -60,7 +55,7 @@
         <button onclick="addAssignment()">Add New</button>
         <button onclick="clearAssignments()">Clear All</button>
         
-        <form action="/subjectInfo" method="post">
+        <form action="/subject/report" method="post">
             <ul id="details">
                 <li class = "ass1">
                     <label for='ass1'>Assignment 1:</label>

@@ -2,6 +2,12 @@ const mongoose = require("mongoose")
 // import subject model
 const Subject = mongoose.model("Subject")
 
+
+function checkValidity(scoreObject){
+  console.log(scoreObject)
+  return 0
+}
+
 //save subject target grades
 const saveTargerGrade = (req, res) => {
     var subject_code = Object.keys(req.body)[0];
@@ -21,8 +27,19 @@ const saveTargerGrade = (req, res) => {
     res.redirect('back')
 }
 
+const displayReport = (req, res) => {
+  var scoreObject = req.body
+  // if (checkValidity(scoreObject) == 0){
+  //   console.log('Invalid Input!')
+  //   res.redirect('back')
+  // }
+  // else{
+    res.render("reportPage")
+  //}
+}
+
 // Export the functions
 module.exports = {
-    saveTargerGrade
+    saveTargerGrade, displayReport
   }
   

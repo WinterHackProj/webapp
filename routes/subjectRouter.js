@@ -8,6 +8,7 @@ const subjectController = require('../controllers/subjectController')
 
 // handle the POST request to save target grade
 subjectRouter.post('/', urlencodedParser, (req, res) => subjectController.saveTargerGrade(req, res))
+subjectRouter.post('/report', urlencodedParser, (req, res) => subjectController.displayReport(req, res))
 
 // export the router
 module.exports = subjectRouter
