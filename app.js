@@ -54,15 +54,6 @@ app.get('/', (req, res) => {
     res.render('index')
 })
 
-// app.get('/assignment', async(req, res) => {
-//     result = await Assignment.find({})
-//     res.send(result)
-// })
-// app.get('/subject', async(req, res) => {
-//     result = await Subject.find({})
-//     res.send(result)
-// })
-
 app.use('/', customerRouter)
 
 // Require routers

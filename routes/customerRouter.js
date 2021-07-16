@@ -6,9 +6,7 @@ require('../config/passport')(passport);
 
 // add our router 
 const customerRouter = express.Router()
-
-// add the customer controller
-// const customerController = require('../controllers/customerController.js');
+const utilities = require("../middleware/utility");
 
 customerRouter.get("/", (req, res) => {
     // res.send(req.session.email)
@@ -36,7 +34,7 @@ customerRouter.post('/register', passport.authenticate('local-signup', {
 }));
 
 //logout
-customerRouter.get('/logout', function(req, res) {
+customerRouter.get('/logout', utilities.isLoggedIn, function(req, res) {
     delete req.session.email;
     req.logout();
     res.redirect('/');
