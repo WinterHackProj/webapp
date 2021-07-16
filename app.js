@@ -19,6 +19,14 @@ app.get('/login', (req, res) => {
     res.render('login', { layout: "login-layout" })
 })
 
+app.get('/add-subject', (req, res) => {
+    res.render('add-subject')
+})
+
+app.get('/subject-detail', (req, res) => {
+    res.render('subject-detail')
+})
+
 app.listen(process.env.PORT || 3000, () => {
     console.log('The small games app is running')
 })
