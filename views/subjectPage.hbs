@@ -1,0 +1,74 @@
+<section id="subjectPage"> 
+    <script>
+        function addAssignment() {
+            // 每调用一次就增加label和input
+            var subjectForm = document.getElementById("details")
+            var n_assignments = subjectForm.getElementsByTagName("label").length + 1
+            var label_name= "ass" + n_assignments //ass2, ass3...
+            subjectForm.innerHTML += "<li class = "+ label_name + ">" + 
+                                    "<label for=" + label_name + ">ID: </label>".replace("ID", "Assignment " + n_assignments) + " " +
+                                    "<input id='ass' type='text' name='obtainedScore'> " + " " +
+                                    "<span>% Out Of</span>" + " " +
+                                    "<input id='ass' type='text' name='totalScore'>" + " " + 
+                                    "<span>%</span>" + " " +
+                                    "<button id=" + label_name + " onclick=\"remove_ass(\'" + label_name + "\');\"><img src=\"../image/cancel.png\"></button>" +
+                                    "</li>"
+        }
+        function remove_ass(ass_number) {
+            document.getElementsByClassName(ass_number)[0].remove();
+        }
+        function clearAssignments(){
+            // 每调用一次就重置label和input
+            var subjectForm = document.getElementById("details")
+            subjectForm.innerHTML = "<li class = 'ass1'>" +
+                                        "<label for='ass1'>Assignment 1:</label> " +
+                                        "<input id='ass1' type='text' name='obtainedScore'>" + " " +
+                                        "<span>% Out Of</span>" + " " +
+                                        "<input id='ass1' type='text' name='totalScore'>" + " " +
+                                        "<span>%</span>" + " "  +
+                                        "<button id='ass1' onclick=\"remove_ass('ass1');\"><img src=\"../image/cancel.png\"></button>" +
+                                    "</li>"
+        }
+        function updateAlert(){
+            alert("Successfully update your Overall Target Grade")
+        }
+    </script>
+    <div class='subjectInfo'>
+        <p>Subject Code: <b>{{subjectInfo.subject_code}}</b></p>
+        <p>Subject Name: <b>{{subjectInfo.subject_name}}</b></p>
+        <p>Credit Point: <b>{{subjectInfo.credit}}</b></p>
+        <p>Overall Target Grade: <b>{{subjectInfo.target}}</b></p>
+        <form action="" method = "post">
+            <label for = {{subjectInfo.subject_code}}><b>Change</b> your <b>Overall Target Grade</b> for <b>{{subjectInfo.subject_code}}</b>: </label>
+            <select name = {{subjectInfo.subject_code}} id = {{subjectInfo.subject_code}}>
+                <option value="H1 80%-100%">H1 80%-100%</option>
+                <option value="H2A 75%-79%">H2A 75%-79%</option>
+                <option value="H2B 70%-74%">H2B 70%-74%</option>
+                <option value="H3 65%-69%">H3 65%-69%</option>
+                <option value="P 50%-64%" selected = "selected">P 50%-64%</option>
+            </select>
+            <br><br>
+            <input type="submit" value="Save Your Target"  onclick="updateAlert()">
+        </form>
+        <p>Estimate your overall grades:</p>
+        <a href="/calcDescription">Click here to read more details</a>
+        <button onclick="addAssignment()">Add New</button>
+        <button onclick="clearAssignments()">Clear All</button>
+        
+        <form action="/subject/report" method="post">
+            <ul id="details">
+                <li class = "ass1">
+                    <label for='ass1'>Assignment 1:</label>
+                    <input id='ass1' type='text' name='obtainedScore'>
+                    <span>% Out Of</span>
+                    <input id='ass1' type='text' name='totalScore'>
+                    <span>%</span>
+                    <button id='ass1' onclick="remove_ass('ass1');"><img src="../image/cancel.png"></button>
+                </li>
+
+            </ul>
+            <button type="submit" class="btn">Calculate!!</button>
+        </form>
+    </div>
+    <a href="/">Back to Homepage</a>
+</section>

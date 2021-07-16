@@ -54,16 +54,22 @@ app.get('/', (req, res) => {
     res.render('index')
 })
 
-app.get('/assignment', async(req, res) => {
-    result = await Assignment.find({})
-    res.send(result)
-})
-app.get('/subject', async(req, res) => {
-    result = await Subject.find({})
-    res.send(result)
-})
+// app.get('/assignment', async(req, res) => {
+//     result = await Assignment.find({})
+//     res.send(result)
+// })
+// app.get('/subject', async(req, res) => {
+//     result = await Subject.find({})
+//     res.send(result)
+// })
 
 app.use('/', customerRouter)
+
+// Require routers
+const subjectRouter = require('./routes/subjectRouter')
+
+// Allocate routes
+app.use('/subject', subjectRouter)
 
 app.listen(process.env.PORT || 3000, () => {
     console.log('The small games app is running')
