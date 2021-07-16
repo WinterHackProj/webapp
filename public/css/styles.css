@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+:root {
+    --text-big: 28px;
+    --text-medium: 18px;
+    --text-small: 10px;
+    --text-header: 20px;
+    --text-footer: 10px;
+    --color-light: #F5F6FD;
+    --color-blue: #141E59;
+    --text: #2b3044;
+    --line: #ffffff;
+    --line-active: #275efe;
+}
+
+body {
+    /* page layout - desktop version */
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 0.25fr;
+    grid-template-rows: 40px 4fr 1fr;
+    grid-gap: 1rem;
+    grid-template-areas: "header header header" "aside main ." "footer footer footer";
+    background-color: var(--color-light);
+    font-family: 'Ubuntu', sans-serif;
+}
+
+header {
+    grid-area: header;
+    font-size: var(--text-header);
+    color: var(--color-blue);
+    font-family: 'Secular One', sans-serif;
+    text-align: center;
+}
+
+aside {
+    grid-area: aside;
+    height: 600px;
+    width: 230px;
+    color: var(--color-blue);
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    justify-items: end;
+}
+
+aside ul {
+    padding-left: 65px;
+    padding-top: 50px;
+    margin: 0;
+    list-style-type: none;
+}
+
+aside p {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: var(--text-medium);
+    margin: 0;
+    color: var(--text);
+    padding-bottom: 20px;
+}
+
+aside p a {
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    margin: 0 var(--spacing, 0px);
+    transition: margin 0.25s;
+}
+
+aside p a svg {
+    width: 76px;
+    height: 40px;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 7px) translateZ(0);
+    fill: none;
+    stroke: var(--stroke, var(--line));
+    stroke-linecap: round;
+    stroke-width: 2px;
+    stroke-dasharray: var(--offset, 69px) 278px;
+    stroke-dashoffset: 361px;
+    transition: stroke 0.25s ease var(--stroke-delay, 0s), stroke-dasharray 0.35s;
+}
+
+aside p a:hover {
+    --spacing: 4px;
+    --stroke: var(--line-active);
+    --stroke-delay: 0.1s;
+    --offset: 180px;
+}
+
+main {
+    grid-area: main;
+}
+
+footer {
+    grid-area: footer;
+}
+
+.category-container {
+    font-family: 'Ubuntu', sans-serif;
+    height: 75px;
+    width: 210px;
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    float: left;
+    padding-top: 15px;
+    padding-left: 10px;
+    margin-right: 30px;
+    margin-bottom: 30px;
+}
+
+.category-container h1 {
+    font-size: var(--text-medium);
+    margin: 0;
+}
+
+.category-container p {
+    margin: 0;
+}
+
+.subject-arrow {
+    font-size: var(--text-big);
+    float: right;
+    margin-right: 10px;
+}
+
+@media screen and (max-width: 640px) {
+    /* page layout for phones */
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+}

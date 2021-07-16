@@ -54,17 +54,20 @@ app.get('/', (req, res) => {
     res.render('index')
 })
 
-app.get('/assignment', async (req, res) => {
+app.get('/assignment', async(req, res) => {
     result = await Assignment.find({})
     res.send(result)
 })
-app.get('/subject', async (req, res) => {
+app.get('/subject', async(req, res) => {
     result = await Subject.find({})
     res.send(result)
 })
 
 app.use('/customer', customerRouter)
 
+app.get('/login', (req, res) => {
+    res.render('login', { layout: "login-layout" })
+})
 
 app.listen(process.env.PORT || 3000, () => {
     console.log('The small games app is running')
