@@ -12,7 +12,6 @@ module.exports = function(passport) {
     // these two functions are used by passport to store information
     // in and retrieve data from sessions. We are using user's object id
     passport.serializeUser(function(customer, done) {
-        console.log(customer)
         done(null, customer._id);
     });
 

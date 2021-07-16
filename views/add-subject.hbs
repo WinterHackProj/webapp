@@ -1,22 +1,35 @@
 <div class="subject-form-container">
-    <form class="form-container" action="">
+    <script>
+        function confirm(){
+            var subject_name = document.forms["subject_form"]["subject_name"].value;
+            var subject_code = document.forms["subject_form"]["subject_code"].value;
+            var credit = document.forms["subject_form"]["credit"].value;
+            var target = document.forms["subject_form"]["target"].value;
+            if(subject_name == null || subject_name == "", subject_code == null || subject_code == "", credit == null || credit == "", target == null || target == ""){
+                alert("please complete all the fields.")
+                return flase
+            }
+                return true
+        }
+    </script>
+    <form class="form-container" action="/subject/add-subject" name="subject_form" method="POST">
         <div class="form-input-container">
             <h5 class="input-heading">Subject Name*</h5>
-            <input type="text" pattern="" id="subject-name" class="subject-input" name="subject-name" placeholder="Subject Name">
+            <input type="text" pattern="[A-Za-z0-9 ]{1,100}" id="subject-name" class="subject-input" name="subject_name" placeholder="Subject Name">
         </div>
         <div class="form-input-container">
-            <h5 class="input-heading">Subject Code*</h5>
-            <input type="text" pattern="" id="subject-code" class="subject-input" name="subject-code" placeholder="Subject Code">
+            <h5 class="input-heading">Subject Code* (9 characters)</h5>
+            <input type="text" pattern="[A-Za-z0-9]{9}" id="subject-code" class="subject-input" name="subject_code" placeholder="Subject Code">
         </div>
         <div class="form-input-container">
             <h5 class="input-heading">Subject Credit*</h5>
-            <input type="text" pattern="" id="subject-credit" class="subject-input" name="subject-credit" placeholder="Subject Credit">
+            <input type="number"  id="subject-credit" class="subject-input" name="credit" min="1" step = "0.5" placeholder="Subject Credit" oninput="validity.valid||(value='');">
         </div>
         <div class="form-input-container">
             <h5 class="input-heading">Target*</h5>
-            <input type="text" pattern="" id="target" class="subject-input" name="target" placeholder="Target">
+            <input type="number" pattern="" id="target" class="subject-input" name="target" min="1" step = "1" placeholder="Target" oninput="validity.valid||(value='');">
         </div>
-        <button class="submit-btn">Add Subject</button>
+        <button class="submit-btn" type="submit" onclick="return confirm()">Add Subject</button>
     </form>
 </div>
 

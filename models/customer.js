@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt-nodejs')
 
 const customerSubjectSchema = new mongoose.Schema({
     SubjectId: { type: mongoose.Schema.Types.ObjectId, ref: 'Subject' },
+    subject_code: String
 })
 // schema of customer
 const customerSchema = new mongoose.Schema({

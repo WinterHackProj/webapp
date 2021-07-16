@@ -9,7 +9,8 @@ const subjectAssignmentSchema = new mongoose.Schema({
 const subjectSchema = new mongoose.Schema({
     subject_code: String,
     subject_name: String,
-    credit: String,
+    credit: Number,
+    target: Number,
     assignments: [subjectAssignmentSchema]
 })
 const Subject = mongoose.model("Subject", subjectSchema)
