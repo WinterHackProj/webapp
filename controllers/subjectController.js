@@ -101,6 +101,12 @@ const getEachSubject = async(req, res) => {
     res.render('subject-detail', { "subjectInfo": subjectInfo, "thiscustomer": customer })
 }
 
+const addScore = async(req, res) => {
+    const subjectInfo = await Subject.findOne({ "_id": req.body.subject }).lean()
+    console.log(req.body)
+    res.render('subjectPage', { "subjectInfo": subjectInfo, "gradeInfo": req.body })
+}
+
 // Export the functions
 module.exports = {
     saveTargerGrade,
@@ -108,5 +114,6 @@ module.exports = {
     getAddSubject,
     addSubject,
     getEachSubject,
-    deleteSubject
+    deleteSubject,
+    addScore
 }

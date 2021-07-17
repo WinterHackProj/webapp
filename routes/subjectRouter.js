@@ -16,6 +16,8 @@ subjectRouter.post('/add-subject', utilities.isLoggedIn, subjectController.addSu
 
 subjectRouter.post('/delete-subject', utilities.isLoggedIn, subjectController.deleteSubject)
 
+subjectRouter.post('/add-score', utilities.isLoggedIn, subjectController.addScore)
+
 subjectRouter.get('/assignment', utilities.isLoggedIn, async(req, res) => {
     result = await Assignment.find({})
     res.send(result)
