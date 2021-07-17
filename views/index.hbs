@@ -1,37 +1,14 @@
-<div class="category-container">
-    <h1>INFO30005</h1>
-    <p>Web Info IT</p>
-    <i class="fas fa-arrow-circle-right subject-arrow"></i> 
-</div>
-<div class="category-container">
-    <h1>INFO30005</h1>
-    <p>Web Info IT</p>
-    <i class="fas fa-arrow-circle-right subject-arrow"></i>
-</div>
-<div class="category-container">
-    <h1>INFO30005</h1>
-    <p>Web Info IT</p>
-    <i class="fas fa-arrow-circle-right subject-arrow"></i>
-</div>
-<div class="category-container">
-    <h1>INFO30005</h1>
-    <p>Web Info IT</p>
-    <i class="fas fa-arrow-circle-right subject-arrow"></i>
-</div>
-<div class="category-container">
-    <h1>INFO30005</h1>
-    <p>Web Info IT</p>
-    <i class="fas fa-arrow-circle-right subject-arrow"></i>
-</div>
-<div class="category-container">
-    <h1>INFO30005</h1>
-    <p>Web Info IT</p>
-    <i class="fas fa-arrow-circle-right subject-arrow"></i>
-</div>
-<a href="/subject/add-subject"><div class="category-container">
+{{#each subjectOnIndex}}
+    <a href="/subject/{{this._id}}"><div class="category-container">
+        <h1>{{this.subject_code}}</h1>
+        <p>{{this.subject_name}}</p>
+        <i class="fas fa-arrow-circle-right subject-arrow"></i> 
+    </div></a>
+{{/each}}
+<a id="add-subject-link" href="/subject/add-subject"><div class="category-container">
     <h1>Add Subject</h1>
     <p></p>
-    <i class="fas fa-arrow-circle-right subject-arrow"></i>
+    <i class="fas fa-plus-circle subject-arrow"></i>
 </div></a>
 
 

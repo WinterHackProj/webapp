@@ -1,23 +1,21 @@
-// import required dependencies 
 const express = require('express')
-    // const utilities = require("./utility");
 const passport = require('passport');
 require('../config/passport')(passport);
-
-// add our router 
-const customerRouter = express.Router()
 const utilities = require("../middleware/utility");
 
-customerRouter.get("/", (req, res) => {
-    // res.send(req.session.email)
-    res.send(req.session.email)
-        // res.send("login successfully good")
-        // res.render('login', { layout: 'beforeLogin.hbs', message: req.flash('loginMessage') });
-});
+// add the router 
+const customerRouter = express.Router()
+
+// add the controller
+const customerController = require('../controllers/customerController');
+
+customerRouter.get("/", customerController.getIndex)
+
+customerRouter.get('/portfolio', utilities.isLoggedIn, customerController.getPortfolio)
 
 customerRouter.get("/login", (req, res) => {
     res.render('login', { layout: 'login-layout', message: req.flash('loginMessage') });
-});
+})
 
 //handle the POST request for login
 customerRouter.post('/login', passport.authenticate('local-login', {

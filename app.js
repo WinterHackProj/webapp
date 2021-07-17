@@ -5,10 +5,6 @@ const session = require('express-session');
 const flash = require('connect-flash-plus');
 const dotenv = require('dotenv').config()
 
-const Assignment = require('./models/assignment')
-const subject = require('./models/subject')
-const Subject = subject.Subject
-
 // setup a session store signing the contents using the secret key
 app.use(session({
     secret: process.env.PASSPORT_KEY,
@@ -47,21 +43,13 @@ app.set('view engine', 'hbs')
 
 require('./models');
 
-
 const customerRouter = require('./routes/customerRouter.js')
-
-app.get('/', (req, res) => {
-    res.render('index')
-})
-
-app.use('/', customerRouter)
-
-// Require routers
 const subjectRouter = require('./routes/subjectRouter')
 
 // Allocate routes
+app.use('/', customerRouter)
 app.use('/subject', subjectRouter)
 
 app.listen(process.env.PORT || 3000, () => {
-    console.log('The small games app is running')
+    console.log('The app is running')
 })
