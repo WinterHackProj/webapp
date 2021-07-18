@@ -7,8 +7,8 @@
             var scoresObtained = document.getElementById("details").getElementsByClassName("obtainedScore")
             var scoresTotal = document.getElementById("details").getElementsByClassName("totalScore")
             for (var i=0;i<"{{gradeInfo.assLength}}";i++){
-                scoresObtained[i].value = "{{gradeInfo.scoresList}}".split(",")[0]
-                scoresTotal[i].value = "{{gradeInfo.targetsList}}".split(",")[0]
+                scoresObtained[i].value = "{{gradeInfo.scoresList}}".split(",")[i]
+                scoresTotal[i].value = "{{gradeInfo.percentList}}".split(",")[i]
             }
         }
         function addAssignment() {
