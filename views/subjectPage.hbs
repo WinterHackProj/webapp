@@ -67,7 +67,7 @@
         <button onclick="addAssignment()">Add New</button>
         <button onclick="clearAssignments()">Clear All</button>
         
-        <form action="/subject/report" method="post">
+        <form action="calc" method="post">
             <ul id="details">
                 {{!-- <li class = "ass1" list-style="none">
                     <label for='ass1'>Assignment 1:</label>
@@ -79,6 +79,8 @@
                 </li> --}}
 
             </ul>
+            <input type="hidden" name="subjectId" value={{gradeInfo.subjectId}}>
+            <input type="hidden" name="overallTarget" value={{subjectInfo.target}}>
             <button type="submit" class="btn">Calculate!!</button>
         </form>
     </div>

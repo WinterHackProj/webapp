@@ -10,6 +10,11 @@ function checkValidity(scoreObject) {
     return 0
 }
 
+function allocateRemainingScore(requiredEach, totalForThisAssignment, totalForRemainingAssignments){
+    var ratio = totalForThisAssignment/totalForRemainingAssignments
+    return requiredEach*ratio
+}
+
 const getAddSubject = async(req, res) => {
     try {
         const customer = await Customer.findOne({ "email": req.session.email }).lean()
@@ -83,15 +88,32 @@ const saveTargerGrade = (req, res) => {
     res.redirect('back')
 }
 
-const displayReport = (req, res) => {
-    var scoreObject = req.body
-        // if (checkValidity(scoreObject) == 0){
-        //   console.log('Invalid Input!')
-        //   res.redirect('back')
-        // }
-        // else{
-    res.render("reportPage")
-        //}
+const doCalculation = async(req, res) => {
+    const customer = await Customer.findOne({ "email": req.session.email }).lean()
+    const subjectInfo = await Subject.findOne({ "_id": req.body.subjectId }).lean()
+    console.log(req.body)
+    var indicesEmpty = []
+    var obtainedScore = req.body.obtainedScore
+    var totalScore = req.body.totalScore
+    var overallTarget = req.body.overallTarget
+    var sumScore = 0
+    var totalRemaining = 0
+    console.log(obtainedScore)
+    for (var i=0;i<obtainedScore.length;i++){
+        if (!obtainedScore[i]){
+            indicesEmpty.push(i)
+            totalRemaining += totalScore[i]
+        }
+        else{
+            sumScore += obtainedScore[i]
+        }
+    }
+    var requiredEach = (overallTarget - sumScore)/indicesEmpty.length
+    for (var i=0;i<indicesEmpty.length;i++){
+        obtainedScore[indicesEmpty[i]] = allocateRemainingScore(requiredEach, totalScore[indicesEmpty[i]], totalRemaining)
+    }
+    console.log(obtainedScore)
+    res.render('subject-detail', { "subjectInfo": subjectInfo, "thiscustomer": customer })
 }
 
 const getEachSubject = async(req, res) => {
@@ -108,15 +130,15 @@ const addScore = async(req, res) => {
     var scoresList = req.body.scores.split(",")
     var targetsList = req.body.targets.split(",")
     var assLength = assignList.length
-    var gradeInfo = {assignList, percentList, scoresList, targetsList, assLength}
-    console.log(gradeInfo)
+    var subjectId = req.body.subject
+    var gradeInfo = {assignList, percentList, scoresList, targetsList, assLength, subjectId}
     res.render('subjectPage', { "subjectInfo": subjectInfo, "gradeInfo": gradeInfo })
 }
 
 // Export the functions
 module.exports = {
     saveTargerGrade,
-    displayReport,
+    doCalculation,
     getAddSubject,
     addSubject,
     getEachSubject,

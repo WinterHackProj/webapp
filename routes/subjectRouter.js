@@ -29,8 +29,7 @@ subjectRouter.get('/calcDescription', utilities.isLoggedIn, async(req, res) => {
 
 // handle the POST request to save target grade
 subjectRouter.post('/', utilities.isLoggedIn, urlencodedParser, subjectController.saveTargerGrade)
-subjectRouter.post('/report', utilities.isLoggedIn, urlencodedParser, subjectController.displayReport)
-
+subjectRouter.post('/calc', utilities.isLoggedIn, urlencodedParser, subjectController.doCalculation)
 subjectRouter.get('/:_id', utilities.isLoggedIn, subjectController.getEachSubject)
 
 // export the router
