@@ -11,6 +11,13 @@
             }
                 return true
         }
+        function addDescription() {
+            var selected = document.getElementById("hurdle");
+            var getform = document.getElementsByClassName("form-container");
+            if(selected.value=="True"){
+                alert(getform.value.innerHTML);
+            }
+        }
     </script>
     <form class="form-container" action="/subject/add-subject" name="subject_form" method="POST">
         <div class="form-input-container">
@@ -28,6 +35,14 @@
         <div class="form-input-container">
             <h5 class="input-heading">Target*</h5>
             <input type="number" pattern="" id="target" class="subject-input" name="target" min="1" step = "1" placeholder="Target" oninput="validity.valid||(value='');">
+        </div>
+        <div class="form-input-container">
+            <h5 class="input-heading">Hurdle*</h5>
+            <select class="subject-input" name="hurdle" id="hurdle" onchange="addDescription()">
+                <option value="">--Please choose an option--</option>
+                <option value="False">No</option>
+                <option value="True">Yes</option>
+            </select>
         </div>
         <button class="submit-btn" type="submit" onclick="return confirm()">Add Subject</button>
     </form>
