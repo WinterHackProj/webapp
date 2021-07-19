@@ -13,9 +13,15 @@
         }
         function addDescription() {
             var selected = document.getElementById("hurdle");
-            var getform = document.getElementsByClassName("form-container");
+            var inputText = document.getElementById("hurdle-container");
+            var content = document.createElement('input')
+            content.setAttribute("type", "text");
+            content.setAttribute("class", "subject-input");
+            content.setAttribute("id", "hurdle-content");
+            content.setAttribute("name", "hurdle-content");
+            content.setAttribute("placeholder", "Describe your Hurdle here");
             if(selected.value=="True"){
-                alert(getform.value.innerHTML);
+                inputText.appendChild(content);
             }
         }
     </script>
@@ -36,13 +42,14 @@
             <h5 class="input-heading">Target*</h5>
             <input type="number" pattern="" id="target" class="subject-input" name="target" min="1" step = "1" placeholder="Target" oninput="validity.valid||(value='');">
         </div>
-        <div class="form-input-container">
+        <div class="form-input-container" id="hurdle-container">
             <h5 class="input-heading">Hurdle*</h5>
             <select class="subject-input" name="hurdle" id="hurdle" onchange="addDescription()">
                 <option value="">--Please choose an option--</option>
                 <option value="False">No</option>
                 <option value="True">Yes</option>
             </select>
+            <br>
         </div>
         <button class="submit-btn" type="submit" onclick="return confirm()">Add Subject</button>
     </form>

@@ -16,7 +16,17 @@
             var subjectForm = document.getElementById("details")
             var n_assignments = subjectForm.getElementsByTagName("label").length + 1
             var label_name= "ass" + n_assignments //ass2, ass3...
-            subjectForm.innerHTML += "<li class = "+ label_name + ">" + 
+            var content = document.createElement('li')
+            content.setAttribute("class", label_name)
+            content.innerHTML = "<label for=" + label_name + ">ID: </label>".replace("ID", "Assignment " + n_assignments + " Name") +
+                                    "<input class='assignmentName' type='text' name='assignmentName' placeholder='For example: Report'> " + " " + "--" + " " +
+                                    "<input class='obtainedScore' type='text' name='obtainedScore'> " + " " +
+                                    "<span>% Out Of</span>" + " " +
+                                    "<input class='totalScore' type='text' name='totalScore'>" + " " + 
+                                    "<span>%</span>" + " " +
+                                    "<button id=" + label_name + " onclick=\"remove_ass(\'" + label_name + "\');\"><img src=\"../image/cancel.png\"></button>"
+            subjectForm.appendChild(content)
+            {{!-- subjectForm.innerHTML += "<li class = "+ label_name + ">" + 
                                     "<label for=" + label_name + ">ID: </label>".replace("ID", "Assignment " + n_assignments + " Name") +
                                     "<input class='assignmentName' type='text' name='assignmentName' placeholder='For example: Report'> " + " " + "--" + " " +
                                     "<input class='obtainedScore' type='text' name='obtainedScore'> " + " " +
@@ -24,7 +34,8 @@
                                     "<input class='totalScore' type='text' name='totalScore'>" + " " + 
                                     "<span>%</span>" + " " +
                                     "<button id=" + label_name + " onclick=\"remove_ass(\'" + label_name + "\');\"><img src=\"../image/cancel.png\"></button>" +
-                                    "</li>"
+                                    "</li>" --}}
+                                    
         }
         function remove_ass(ass_number) {
             document.getElementsByClassName(ass_number)[0].remove();
