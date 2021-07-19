@@ -26,7 +26,7 @@
                                     "<span>% Out Of</span>" + " " +
                                     "<input class='totalScore' type='number' step='0.01' name='totalScore' required>" + " " + 
                                     "<span>%</span>" + " " +
-                                    "<button id=" + label_name + " onclick=\"remove_ass(\'" + label_name + "\');\"><img src=\"../image/cancel.png\"></button>"
+                                    "<button id=" + label_name + " class=\"bin-btn\" onclick=\"remove_ass(\'" + label_name + "\');\"><i class=\"fas fa-trash-alt bin-icon\"></i></button>"
             subjectForm.appendChild(content)
                                     
         }
@@ -43,7 +43,7 @@
                                         "<span>% Out Of</span>" + " " +
                                         "<input class='totalScore' type='number' step='0.01' name='totalScore' required>" + " " +
                                         "<span>%</span>" + " "  +
-                                        "<button id='ass1' onclick=\"remove_ass('ass1');\"><img src=\"../image/cancel.png\"></button>" +
+                                        "<button id='ass1' class=\"bin-btn\" onclick=\"remove_ass('ass1');\"><i class=\"fas fa-trash-alt bin-icon\"></i></button>" +
                                     "</li>"
         }
         function updateAlert(){
@@ -52,7 +52,7 @@
     </script>
     <body onload="initialise()"></body>
     <div class='subjectInfo'>
-        <p>Subject Code: <b>{{subjectInfo.subject_code}}</b></p>
+        <p style="margin-top:0;">Subject Code: <b>{{subjectInfo.subject_code}}</b></p>
         <p>Subject Name: <b>{{subjectInfo.subject_name}}</b></p>
         <p>Credit Point: <b>{{subjectInfo.credit}}</b></p>
         <p>Overall Target Grade: <b>{{subjectInfo.target}}</b></p>
@@ -68,10 +68,10 @@
             <br><br>
             <input type="submit" value="Save Your Target"  onclick="updateAlert()">
         </form> --}}
-        <p>Estimate your overall grades below:</p>
-        <a href="/subject/calcDescription">Click here to read more details</a>
-        <button onclick="addAssignment()">Add New</button>
-        <button onclick="clearAssignments()">Clear All</button>
+        <br>
+        <h3>Estimate your overall grades below: <small><a href="/subject/calcDescription">(Click here to read more details)</a></small></h3>
+        <button class="submit-btn change-info" style="margin-right:6px;" onclick="addAssignment()">Add New</button>
+        <button class="submit-btn delete-subject" onclick="clearAssignments()">Clear All</button>
         
         <form action="calc" method="post">
             <ul id="details">
@@ -86,8 +86,7 @@
             </ul>
             <input type="hidden" name="subjectId" value={{gradeInfo.subjectId}}>
             <input type="hidden" name="overallTarget" value={{subjectInfo.target}}>
-            <button type="submit" class="btn">Calculate Now</button>
+            <button type="submit" class="btn submit-btn">Calculate Now</button>
         </form>
     </div>
-    <a href="/">Back to Homepage</a>
 </section>

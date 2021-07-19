@@ -23,9 +23,7 @@ subjectRouter.get('/assignment', utilities.isLoggedIn, async(req, res) => {
     res.send(result)
 })
 
-subjectRouter.get('/calcDescription', utilities.isLoggedIn, async(req, res) => {
-    res.render("intro")
-})
+subjectRouter.get('/calcDescription', utilities.isLoggedIn, subjectController.getCalcInfo)
 
 // handle the POST request to save target grade
 subjectRouter.post('/', utilities.isLoggedIn, urlencodedParser, subjectController.saveTargerGrade)
