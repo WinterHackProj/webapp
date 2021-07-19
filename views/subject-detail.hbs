@@ -32,18 +32,14 @@ Modified by Yifei Wang on 15 Jul, 2021 --}}
             <div class="col col-3">MY SCORE</div>
             <div class="col col-4">TARGET</div>
         </li>
+        {{#each assignmentInfo}}
         <li class="table-row">
-            <div class="col col-1" data-label="Assignment Name" id="ass">Assignment One</div>
-            <div class="col col-2" data-label="Percentage" id="per">60</div>
-            <div class="col col-3" data-label="My Score" id="sco">40</div>
+            <div class="col col-1" data-label="Assignment Name" id="ass">{{this.name}}</div>
+            <div class="col col-2" data-label="Percentage" id="per">{{this.percentage}}</div>
+            <div class="col col-3" data-label="My Score" id="sco">{{this.current_score}}</div>
             <div class="col col-4" data-label="Target" id="tar">80</div>
         </li>
-        <li class="table-row">
-            <div class="col col-1" data-label="Assignment Name" id="ass">Exam</div>
-            <div class="col col-2" data-label="Percentage" id="per">40</div>
-            <div class="col col-3" data-label="My Score" id="sco">30</div>
-            <div class="col col-4" data-label="Target" id="tar">80</div>
-        </li>
+        {{/each}}
     </ul>
     <center>
         <form action="add-score" method="post" class="delete-btn-form" id="submission">

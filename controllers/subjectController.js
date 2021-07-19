@@ -100,40 +100,45 @@ const doCalculation = async(req, res) => {
     var overallTarget = req.body.overallTarget
     var sumScore = 0
     var totalRemaining = 0
-    console.log(obtainedScore)
+    console.log("计算前数据: "+obtainedScore)
     for (var i=0;i<obtainedScore.length;i++){
         if (!obtainedScore[i]){
             indicesEmpty.push(i)
-            totalRemaining += totalScore[i]
+            totalRemaining += parseInt(totalScore[i])
         }
         else{
-            sumScore += obtainedScore[i]
+            sumScore += parseInt(obtainedScore[i])
         }
     }
-    var requiredEach = (overallTarget - sumScore)/indicesEmpty.length
+    console.log("indices_empty: "+indicesEmpty)
+    console.log("sumScore: "+sumScore)
+    console.log("totalRemaining: "+totalRemaining)
+
+    var requiredEach = overallTarget - sumScore
+    console.log("requiredEach: "+requiredEach)
     for (var i=0;i<indicesEmpty.length;i++){
         obtainedScore[indicesEmpty[i]] = allocateRemainingScore(requiredEach, totalScore[indicesEmpty[i]], totalRemaining)
     }
-    console.log(obtainedScore)
+    console.log("计算后数据: "+obtainedScore)
 
-    
+    var assignmentInfo = []
     var allAssignments = []
+    
     for (var i=0;i<assignmentNames.length;i++){
         var assignmentEntity = {}
         assignmentEntity.name = assignmentNames[i]
         assignmentEntity.percentage = totalScore[i]
         assignmentEntity.current_score = obtainedScore[i]
-        allAssignments.push(assignmentEntity)
+        assignmentInfo.push(assignmentEntity)
         var assignment = new Assignment(assignmentEntity)
+        var assignmentRecord = new subjectAssignment({ assignmentId: assignment._id })
+        allAssignments.push(assignmentRecord)
+        await Subject.updateOne({ "_id": req.body.subjectId }, { "assignments": allAssignments }).lean()
         await assignment.save()
     }
-    console.log(allAssignments)
+    console.log(assignmentInfo)
     
-    
-    // var assignmentRecord = new subjectAssignment({ assignmentId: assignment._id })
-    
-    // allAssignments.push(assignments)
-    res.render('subject-detail', { "subjectInfo": subjectInfo, "thiscustomer": customer })
+    res.render('subject-detail', { "subjectInfo": subjectInfo, "thiscustomer": customer, "assignmentInfo": assignmentInfo })
 }
 
 const getEachSubject = async(req, res) => {
@@ -141,13 +146,15 @@ const getEachSubject = async(req, res) => {
     const subjectInfo = await Subject.findOne({ "_id": req.params._id }).lean()
     const allAssignments = subjectInfo.assignments
     if (allAssignments.length == 0){  // Currently no assignments for this subject
-        var assignmentInfo = {"assName": "", "myScore": "", "percentage": "", "target": ""}
+        var assignmentInfo = [{"assName": "", "myScore": "", "percentage": "", "target": ""}]
     }
     else{
+        var assignmentInfo = []
         for (var i in allAssignments){
-            console.log(i)
+            var assignmentId = allAssignments[i].assignmentId
+            assignmentInfo.push(await Assignment.findOne( {"_id": assignmentId} ).lean())
         }
-        var assignmentInfo = {"assName": "", "myScore": "", "percentage": "", "target": ""}
+        console.log(assignmentInfo)
     }
     req.session.subjectId = req.params._id
     res.render('subject-detail', { "subjectInfo": subjectInfo, "thiscustomer": customer, "assignmentInfo": assignmentInfo })
