@@ -11,9 +11,9 @@ function checkValidity(scoreObject) {
     return 0
 }
 
-function allocateRemainingScore(requiredEach, totalForThisAssignment, totalForRemainingAssignments){
-    var ratio = totalForThisAssignment/totalForRemainingAssignments
-    return requiredEach*ratio
+function allocateRemainingScore(requiredEach, totalForThisAssignment, totalForRemainingAssignments) {
+    var ratio = totalForThisAssignment / totalForRemainingAssignments
+    return requiredEach * ratio
 }
 
 const getAddSubject = async(req, res) => {
@@ -70,6 +70,7 @@ const addSubject = async(req, res) => {
 const deleteSubject = async(req, res) => {
     const customer = await Customer.findOne({ "email": req.session.email }).lean()
     await Customer.updateOne({ "email": req.session.email }, { $pull: { subjects: { "SubjectId": req.session.subjectId } } }).lean()
+    await Subject.deleteOne({ "_id": req.session.subjectId }).lean()
     return res.render('deleteSubject', { "thiscustomer": customer })
 }
 
@@ -96,39 +97,41 @@ const doCalculation = async(req, res) => {
     var indicesEmpty = []
     var assignmentNames = req.body.assignmentName
     var obtainedScore = req.body.obtainedScore
+    var targetScore = new Array(obtainedScore.length)
     var totalScore = req.body.totalScore
     var overallTarget = req.body.overallTarget
     var sumScore = 0
     var totalRemaining = 0
-    console.log("计算前数据: "+obtainedScore)
-    for (var i=0;i<obtainedScore.length;i++){
-        if (!obtainedScore[i]){
+    console.log("计算前数据: " + obtainedScore)
+    for (var i = 0; i < obtainedScore.length; i++) {
+        if (!obtainedScore[i]) {
             indicesEmpty.push(i)
             totalRemaining += parseInt(totalScore[i])
-        }
-        else{
+        } else {
             sumScore += parseInt(obtainedScore[i])
         }
     }
-    console.log("indices_empty: "+indicesEmpty)
-    console.log("sumScore: "+sumScore)
-    console.log("totalRemaining: "+totalRemaining)
+    console.log("indices_empty: " + indicesEmpty)
+    console.log("sumScore: " + sumScore)
+    console.log("totalRemaining: " + totalRemaining)
 
     var requiredEach = overallTarget - sumScore
-    console.log("requiredEach: "+requiredEach)
-    for (var i=0;i<indicesEmpty.length;i++){
-        obtainedScore[indicesEmpty[i]] = allocateRemainingScore(requiredEach, totalScore[indicesEmpty[i]], totalRemaining)
+    console.log("requiredEach: " + requiredEach)
+    for (var i = 0; i < indicesEmpty.length; i++) {
+        targetScore[indicesEmpty[i]] = allocateRemainingScore(requiredEach, totalScore[indicesEmpty[i]], totalRemaining)
     }
-    console.log("计算后数据: "+obtainedScore)
+    console.log("计算后数据: " + obtainedScore)
 
+    console.log(targetScore)
     var assignmentInfo = []
     var allAssignments = []
-    
-    for (var i=0;i<assignmentNames.length;i++){
+
+    for (var i = 0; i < assignmentNames.length; i++) {
         var assignmentEntity = {}
         assignmentEntity.name = assignmentNames[i]
         assignmentEntity.percentage = totalScore[i]
         assignmentEntity.current_score = obtainedScore[i]
+        assignmentEntity.target = targetScore[i]
         assignmentInfo.push(assignmentEntity)
         var assignment = new Assignment(assignmentEntity)
         var assignmentRecord = new subjectAssignment({ assignmentId: assignment._id })
@@ -137,7 +140,7 @@ const doCalculation = async(req, res) => {
         await assignment.save()
     }
     console.log(assignmentInfo)
-    
+
     res.render('subject-detail', { "subjectInfo": subjectInfo, "thiscustomer": customer, "assignmentInfo": assignmentInfo })
 }
 
@@ -145,14 +148,13 @@ const getEachSubject = async(req, res) => {
     const customer = await Customer.findOne({ "email": req.session.email }).lean()
     const subjectInfo = await Subject.findOne({ "_id": req.params._id }).lean()
     const allAssignments = subjectInfo.assignments
-    if (allAssignments.length == 0){  // Currently no assignments for this subject
-        var assignmentInfo = [{"assName": "", "myScore": "", "percentage": "", "target": ""}]
-    }
-    else{
+    if (allAssignments.length == 0) { // Currently no assignments for this subject
+        var assignmentInfo = [{ "assName": "", "myScore": "", "percentage": "", "target": "" }]
+    } else {
         var assignmentInfo = []
-        for (var i in allAssignments){
+        for (var i in allAssignments) {
             var assignmentId = allAssignments[i].assignmentId
-            assignmentInfo.push(await Assignment.findOne( {"_id": assignmentId} ).lean())
+            assignmentInfo.push(await Assignment.findOne({ "_id": assignmentId }).lean())
         }
         console.log(assignmentInfo)
     }
@@ -169,7 +171,7 @@ const addScore = async(req, res) => {
     var targetsList = req.body.targets.split(",")
     var assLength = assignList.length
     var subjectId = req.body.subject
-    var gradeInfo = {assignList, percentList, scoresList, targetsList, assLength, subjectId}
+    var gradeInfo = { assignList, percentList, scoresList, targetsList, assLength, subjectId }
 
     res.render('subjectPage', { "subjectInfo": subjectInfo, "thiscustomer": customer, "gradeInfo": gradeInfo })
 }

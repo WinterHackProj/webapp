@@ -36,8 +36,16 @@ Modified by Yifei Wang on 15 Jul, 2021 --}}
         <li class="table-row">
             <div class="col col-1" data-label="Assignment Name" id="ass">{{this.name}}</div>
             <div class="col col-2" data-label="Percentage" id="per">{{this.percentage}}</div>
-            <div class="col col-3" data-label="My Score" id="sco">{{this.current_score}}</div>
-            <div class="col col-4" data-label="Target" id="tar">80</div>
+            {{#if this.current_score}}
+                <div class="col col-3" data-label="My Score" id="sco">{{this.current_score}}</div>
+            {{else}}
+                <div class="col col-3" data-label="My Score" id="sco">N/A</div>
+            {{/if}}
+            {{#if this.target}}
+                <div class="col col-4" data-label="Target" id="tar">{{this.target}}</div>
+            {{else}}
+                <div class="col col-4" data-label="Target" id="tar">N/A</div>
+            {{/if}}
         </li>
         {{/each}}
     </ul>
@@ -48,9 +56,8 @@ Modified by Yifei Wang on 15 Jul, 2021 --}}
             <input type="hidden" id="score" name="scores" value="null">
             <input type="hidden" id="target" name="targets" value="null">
             <input type="hidden" id="subject" name="subject" value="{{subjectInfo._id}}">
-            <button onclick="fillContent()" type="submit" class="submit-btn">Add Score</button>
+            <button onclick="fillContent()" type="submit" class="submit-btn">Edit Assignment</button>
         </form>
-        <button class="submit-btn change-info">Change Info</button>
         <form action="delete-subject" method="post" class="delete-btn-form">
             <button type="submit" class="submit-btn delete-subject">Delete Subject</button>
         </form>

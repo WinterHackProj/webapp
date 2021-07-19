@@ -4,9 +4,11 @@
             for (var i=0;i<"{{gradeInfo.assLength}}";i++){
                 addAssignment()
             }
+            var assignmentName = document.getElementById("details").getElementsByClassName("assignmentName")
             var scoresObtained = document.getElementById("details").getElementsByClassName("obtainedScore")
             var scoresTotal = document.getElementById("details").getElementsByClassName("totalScore")
             for (var i=0;i<"{{gradeInfo.assLength}}";i++){
+                assignmentName[i].value = "{{gradeInfo.assignList}}".split(",")[i]
                 scoresObtained[i].value = "{{gradeInfo.scoresList}}".split(",")[i]
                 scoresTotal[i].value = "{{gradeInfo.percentList}}".split(",")[i]
             }
@@ -19,22 +21,13 @@
             var content = document.createElement('li')
             content.setAttribute("class", label_name)
             content.innerHTML = "<label for=" + label_name + ">ID: </label>".replace("ID", "Assignment " + n_assignments + " Name") +
-                                    "<input class='assignmentName' type='text' name='assignmentName' placeholder='For example: Report'> " + " " + "--" + " " +
-                                    "<input class='obtainedScore' type='text' name='obtainedScore'> " + " " +
+                                    "<input class='assignmentName' type='text' name='assignmentName' placeholder='For example: Report' required> " + " " + "--" + " " +
+                                    "<input class='obtainedScore' type='number' name='obtainedScore'> " + " " +
                                     "<span>% Out Of</span>" + " " +
-                                    "<input class='totalScore' type='text' name='totalScore'>" + " " + 
+                                    "<input class='totalScore' type='number' name='totalScore' required>" + " " + 
                                     "<span>%</span>" + " " +
                                     "<button id=" + label_name + " onclick=\"remove_ass(\'" + label_name + "\');\"><img src=\"../image/cancel.png\"></button>"
             subjectForm.appendChild(content)
-            {{!-- subjectForm.innerHTML += "<li class = "+ label_name + ">" + 
-                                    "<label for=" + label_name + ">ID: </label>".replace("ID", "Assignment " + n_assignments + " Name") +
-                                    "<input class='assignmentName' type='text' name='assignmentName' placeholder='For example: Report'> " + " " + "--" + " " +
-                                    "<input class='obtainedScore' type='text' name='obtainedScore'> " + " " +
-                                    "<span>% Out Of</span>" + " " +
-                                    "<input class='totalScore' type='text' name='totalScore'>" + " " + 
-                                    "<span>%</span>" + " " +
-                                    "<button id=" + label_name + " onclick=\"remove_ass(\'" + label_name + "\');\"><img src=\"../image/cancel.png\"></button>" +
-                                    "</li>" --}}
                                     
         }
         function remove_ass(ass_number) {
@@ -45,10 +38,10 @@
             var subjectForm = document.getElementById("details")
             subjectForm.innerHTML = "<li class = 'ass1'>" +
                                         "<label for='ass1'>Assignment 1 Name:</label> " +
-                                        "<input class='assignmentName' type='text' name='assignmentName' placeholder='For example: Report'> " + " " + "--" + " " +
+                                        "<input class='assignmentName' type='text' name='assignmentName' placeholder='For example: Report' required> " + " " + "--" + " " +
                                         "<input id='obtainedScore' type='text' name='obtainedScore'>" + " " +
                                         "<span>% Out Of</span>" + " " +
-                                        "<input id='totalScore' type='text' name='totalScore'>" + " " +
+                                        "<input id='totalScore' type='text' name='totalScore' required>" + " " +
                                         "<span>%</span>" + " "  +
                                         "<button id='ass1' onclick=\"remove_ass('ass1');\"><img src=\"../image/cancel.png\"></button>" +
                                     "</li>"

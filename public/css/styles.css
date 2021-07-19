@@ -319,8 +319,6 @@ footer {
 .delete-subject {
     border: 1px solid var(--color-red);
     background-color: var(--color-red);
-    margin-left: 10px;
-    margin-top: 10px;
 }
 
 a {

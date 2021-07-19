@@ -1,57 +1,22 @@
 <div class="subject-form-container">
-    <script>
-        function confirm(){
-            var subject_name = document.forms["subject_form"]["subject_name"].value;
-            var subject_code = document.forms["subject_form"]["subject_code"].value;
-            var credit = document.forms["subject_form"]["credit"].value;
-            var target = document.forms["subject_form"]["target"].value;
-            if(subject_name == null || subject_name == "", subject_code == null || subject_code == "", credit == null || credit == "", target == null || target == ""){
-                alert("please complete all the fields.")
-                return flase
-            }
-                return true
-        }
-        function addDescription() {
-            var selected = document.getElementById("hurdle");
-            var inputText = document.getElementById("hurdle-container");
-            var content = document.createElement('input')
-            content.setAttribute("type", "text");
-            content.setAttribute("class", "subject-input");
-            content.setAttribute("id", "hurdle-content");
-            content.setAttribute("name", "hurdle-content");
-            content.setAttribute("placeholder", "Describe your Hurdle here");
-            if(selected.value=="True"){
-                inputText.appendChild(content);
-            }
-        }
-    </script>
     <form class="form-container" action="/subject/add-subject" name="subject_form" method="POST">
         <div class="form-input-container">
             <h5 class="input-heading">Subject Name*</h5>
-            <input type="text" pattern="[A-Za-z0-9 ]{1,100}" id="subject-name" class="subject-input" name="subject_name" placeholder="Subject Name">
+            <input type="text" pattern="[A-Za-z0-9 ]{1,100}" id="subject-name" class="subject-input" name="subject_name" placeholder="Subject Name" required>
         </div>
         <div class="form-input-container">
             <h5 class="input-heading">Subject Code* (9 characters)</h5>
-            <input type="text" pattern="[A-Za-z0-9]{9}" id="subject-code" class="subject-input" name="subject_code" placeholder="Subject Code">
+            <input type="text" pattern="[A-Za-z0-9]{9}" id="subject-code" class="subject-input" name="subject_code" placeholder="Subject Code" required>
         </div>
         <div class="form-input-container">
             <h5 class="input-heading">Subject Credit*</h5>
-            <input type="number"  id="subject-credit" class="subject-input" name="credit" min="1" step = "0.5" placeholder="Subject Credit" oninput="validity.valid||(value='');">
+            <input type="number"  id="subject-credit" class="subject-input" name="credit" min="1" step = "0.5" placeholder="Subject Credit" oninput="validity.valid||(value='');" required>
         </div>
         <div class="form-input-container">
             <h5 class="input-heading">Target*</h5>
-            <input type="number" pattern="" id="target" class="subject-input" name="target" min="1" step = "1" placeholder="Target" oninput="validity.valid||(value='');">
+            <input type="number" pattern="" id="target" class="subject-input" name="target" min="1" step = "1" placeholder="Target" oninput="validity.valid||(value='');" required>
         </div>
-        <div class="form-input-container" id="hurdle-container">
-            <h5 class="input-heading">Hurdle*</h5>
-            <select class="subject-input" name="hurdle" id="hurdle" onchange="addDescription()">
-                <option value="">--Please choose an option--</option>
-                <option value="False">No</option>
-                <option value="True">Yes</option>
-            </select>
-            <br>
-        </div>
-        <button class="submit-btn" type="submit" onclick="return confirm()">Add Subject</button>
+        <button class="submit-btn" type="submit">Add Subject</button>
     </form>
 </div>
 
