@@ -4,12 +4,13 @@
     --text-big: 28px;
     --text-medium: 18px;
     --text-small: 10px;
-    --text-header: 20px;
+    --text-header: 30px;
     --text-footer: 10px;
     --color-light: #F5F6FD;
     --color-blue: #141E59;
     --color-lightblue: #374fd6;
     --color-red: rgb(252, 54, 54);
+    --color-darkblue: #2c3e50;
     --text: #2b3044;
     --line: #ffffff;
     --line-active: #275efe;
@@ -174,6 +175,7 @@ footer {
 }
 
 .input-heading {
+    font-size: 20px;
     margin: 0;
 }
 
@@ -299,6 +301,7 @@ footer {
 
 .responsive-table .col-3 {
     flex-basis: 25%;
+    color: var(--color-darkblue);
 }
 
 .responsive-table .col-4 {

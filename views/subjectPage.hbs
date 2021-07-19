@@ -22,9 +22,9 @@
             content.setAttribute("class", label_name)
             content.innerHTML = "<label for=" + label_name + ">ID: </label>".replace("ID", "Assignment " + n_assignments + " Name") +
                                     "<input class='assignmentName' type='text' name='assignmentName' placeholder='For example: Report' required> " + " " + "--" + " " +
-                                    "<input class='obtainedScore' type='number' name='obtainedScore'> " + " " +
+                                    "<input class='obtainedScore' type='number' step='0.1' name='obtainedScore'> " + " " +
                                     "<span>% Out Of</span>" + " " +
-                                    "<input class='totalScore' type='number' name='totalScore' required>" + " " + 
+                                    "<input class='totalScore' type='number' step='0.1' name='totalScore' required>" + " " + 
                                     "<span>%</span>" + " " +
                                     "<button id=" + label_name + " onclick=\"remove_ass(\'" + label_name + "\');\"><img src=\"../image/cancel.png\"></button>"
             subjectForm.appendChild(content)
@@ -39,9 +39,9 @@
             subjectForm.innerHTML = "<li class = 'ass1'>" +
                                         "<label for='ass1'>Assignment 1 Name:</label> " +
                                         "<input class='assignmentName' type='text' name='assignmentName' placeholder='For example: Report' required> " + " " + "--" + " " +
-                                        "<input id='obtainedScore' type='text' name='obtainedScore'>" + " " +
+                                        "<input id='obtainedScore' type='number' step='0.1' name='obtainedScore'>" + " " +
                                         "<span>% Out Of</span>" + " " +
-                                        "<input id='totalScore' type='text' name='totalScore' required>" + " " +
+                                        "<input id='totalScore' type='number' step='0.1' name='totalScore' required>" + " " +
                                         "<span>%</span>" + " "  +
                                         "<button id='ass1' onclick=\"remove_ass('ass1');\"><img src=\"../image/cancel.png\"></button>" +
                                     "</li>"
@@ -68,7 +68,7 @@
             <br><br>
             <input type="submit" value="Save Your Target"  onclick="updateAlert()">
         </form> --}}
-        <p>Estimate your overall grades:</p>
+        <p>Estimate your overall grades below:</p>
         <a href="/subject/calcDescription">Click here to read more details</a>
         <button onclick="addAssignment()">Add New</button>
         <button onclick="clearAssignments()">Clear All</button>
@@ -87,7 +87,7 @@
             </ul>
             <input type="hidden" name="subjectId" value={{gradeInfo.subjectId}}>
             <input type="hidden" name="overallTarget" value={{subjectInfo.target}}>
-            <button type="submit" class="btn">Calculate!!</button>
+            <button type="submit" class="btn">Calculate Now</button>
         </form>
     </div>
     <a href="/">Back to Homepage</a>

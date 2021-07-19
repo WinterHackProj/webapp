@@ -29,22 +29,22 @@ Modified by Yifei Wang on 15 Jul, 2021 --}}
         <li class="table-header">
             <div class="col col-1">ASSIGNMENT NAME</div>
             <div class="col col-2">PERCENTAGE (%)</div>
-            <div class="col col-3">MY SCORE</div>
-            <div class="col col-4">TARGET</div>
+            <div class="col col-3"><b>MY SCORE</b></div>
+            <div class="col col-4"><b>TARGET</b></div>
         </li>
         {{#each assignmentInfo}}
         <li class="table-row">
             <div class="col col-1" data-label="Assignment Name" id="ass">{{this.name}}</div>
             <div class="col col-2" data-label="Percentage" id="per">{{this.percentage}}</div>
             {{#if this.current_score}}
-                <div class="col col-3" data-label="My Score" id="sco">{{this.current_score}}</div>
+                <div class="col col-3" data-label="My Score" id="sco"><b>{{this.current_score}}</b></div>
             {{else}}
-                <div class="col col-3" data-label="My Score" id="sco">N/A</div>
+                <div class="col col-3" data-label="My Score" id="sco"><b>N/A</b></div>
             {{/if}}
             {{#if this.target}}
-                <div class="col col-4" data-label="Target" id="tar">{{this.target}}</div>
+                <div class="col col-4" data-label="Target" id="tar"><b>{{this.target}}</b></div>
             {{else}}
-                <div class="col col-4" data-label="Target" id="tar">N/A</div>
+                <div class="col col-4" data-label="Target" id="tar"><b>N/A</b></div>
             {{/if}}
         </li>
         {{/each}}
