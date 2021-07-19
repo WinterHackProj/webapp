@@ -37,14 +37,14 @@ Modified by Yifei Wang on 15 Jul, 2021 --}}
             <div class="col col-1" data-label="Assignment Name" id="ass">{{this.name}}</div>
             <div class="col col-2" data-label="Percentage" id="per">{{this.percentage}}</div>
             {{#if this.current_score}}
-                <div class="col col-3" data-label="My Score" id="sco"><b>{{this.current_score}}</b></div>
+                <div class="col col-3" data-label="My Score" id="sco">{{this.current_score}}</div>
             {{else}}
-                <div class="col col-3" data-label="My Score" id="sco"><b>N/A</b></div>
+                <div class="col col-3" data-label="My Score" id="sco">N/A</div>
             {{/if}}
             {{#if this.target}}
-                <div class="col col-4" data-label="Target" id="tar"><b>{{this.target}}</b></div>
+                <div class="col col-4" data-label="Target" id="tar">{{this.target}}</div>
             {{else}}
-                <div class="col col-4" data-label="Target" id="tar"><b>N/A</b></div>
+                <div class="col col-4" data-label="Target" id="tar">N/A</div>
             {{/if}}
         </li>
         {{/each}}

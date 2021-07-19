@@ -106,9 +106,9 @@ const doCalculation = async(req, res) => {
     for (var i = 0; i < obtainedScore.length; i++) {
         if (!obtainedScore[i]) {
             indicesEmpty.push(i)
-            totalRemaining += parseInt(totalScore[i])
+            totalRemaining += parseFloat(totalScore[i])
         } else {
-            sumScore += parseInt(obtainedScore[i])
+            sumScore += parseFloat(obtainedScore[i])
         }
     }
     console.log("indices_empty: " + indicesEmpty)
@@ -172,6 +172,7 @@ const addScore = async(req, res) => {
     var assLength = assignList.length
     var subjectId = req.body.subject
     var gradeInfo = { assignList, percentList, scoresList, targetsList, assLength, subjectId }
+    console.log(gradeInfo)
 
     res.render('subjectPage', { "subjectInfo": subjectInfo, "thiscustomer": customer, "gradeInfo": gradeInfo })
 }
