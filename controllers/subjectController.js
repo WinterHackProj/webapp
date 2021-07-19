@@ -124,6 +124,7 @@ const getEachSubject = async(req, res) => {
 }
 
 const addScore = async(req, res) => {
+    const customer = await Customer.findOne({ "email": req.session.email }).lean()
     const subjectInfo = await Subject.findOne({ "_id": req.body.subject }).lean()
     var assignList = req.body.assignments.split(",")
     var percentList = req.body.percentages.split(",")
@@ -132,7 +133,7 @@ const addScore = async(req, res) => {
     var assLength = assignList.length
     var subjectId = req.body.subject
     var gradeInfo = {assignList, percentList, scoresList, targetsList, assLength, subjectId}
-    res.render('subjectPage', { "subjectInfo": subjectInfo, "gradeInfo": gradeInfo })
+    res.render('subjectPage', { "subjectInfo": subjectInfo, "thiscustomer": customer, "gradeInfo": gradeInfo })
 }
 
 // Export the functions
