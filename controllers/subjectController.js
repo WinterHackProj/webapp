@@ -4,6 +4,7 @@ const Subject = subject.Subject
 const customer = require("../models/customer")
 const Customer = customer.Customer
 const CustomerSubject = customer.CustomerSubject
+const subjectAssignment = subject.subjectAssignment
 
 function checkValidity(scoreObject) {
     console.log(scoreObject)
@@ -93,6 +94,7 @@ const doCalculation = async(req, res) => {
     const subjectInfo = await Subject.findOne({ "_id": req.body.subjectId }).lean()
     console.log(req.body)
     var indicesEmpty = []
+    var assignmentNames = req.body.assignmentName
     var obtainedScore = req.body.obtainedScore
     var totalScore = req.body.totalScore
     var overallTarget = req.body.overallTarget
@@ -113,14 +115,42 @@ const doCalculation = async(req, res) => {
         obtainedScore[indicesEmpty[i]] = allocateRemainingScore(requiredEach, totalScore[indicesEmpty[i]], totalRemaining)
     }
     console.log(obtainedScore)
+
+    
+    var allAssignments = []
+    for (var i=0;i<assignmentNames.length;i++){
+        var assignmentEntity = {}
+        assignmentEntity.name = assignmentNames[i]
+        assignmentEntity.percentage = totalScore[i]
+        assignmentEntity.current_score = obtainedScore[i]
+        allAssignments.push(assignmentEntity)
+        var assignment = new Assignment(assignmentEntity)
+        await assignment.save()
+    }
+    console.log(allAssignments)
+    
+    
+    // var assignmentRecord = new subjectAssignment({ assignmentId: assignment._id })
+    
+    // allAssignments.push(assignments)
     res.render('subject-detail', { "subjectInfo": subjectInfo, "thiscustomer": customer })
 }
 
 const getEachSubject = async(req, res) => {
     const customer = await Customer.findOne({ "email": req.session.email }).lean()
     const subjectInfo = await Subject.findOne({ "_id": req.params._id }).lean()
+    const allAssignments = subjectInfo.assignments
+    if (allAssignments.length == 0){  // Currently no assignments for this subject
+        var assignmentInfo = {"assName": "", "myScore": "", "percentage": "", "target": ""}
+    }
+    else{
+        for (var i in allAssignments){
+            console.log(i)
+        }
+        var assignmentInfo = {"assName": "", "myScore": "", "percentage": "", "target": ""}
+    }
     req.session.subjectId = req.params._id
-    res.render('subject-detail', { "subjectInfo": subjectInfo, "thiscustomer": customer })
+    res.render('subject-detail', { "subjectInfo": subjectInfo, "thiscustomer": customer, "assignmentInfo": assignmentInfo })
 }
 
 const addScore = async(req, res) => {
@@ -133,6 +163,7 @@ const addScore = async(req, res) => {
     var assLength = assignList.length
     var subjectId = req.body.subject
     var gradeInfo = {assignList, percentList, scoresList, targetsList, assLength, subjectId}
+
     res.render('subjectPage', { "subjectInfo": subjectInfo, "thiscustomer": customer, "gradeInfo": gradeInfo })
 }
 
