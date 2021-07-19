@@ -17,7 +17,8 @@
             var n_assignments = subjectForm.getElementsByTagName("label").length + 1
             var label_name= "ass" + n_assignments //ass2, ass3...
             subjectForm.innerHTML += "<li class = "+ label_name + ">" + 
-                                    "<label for=" + label_name + ">ID: </label>".replace("ID", "Assignment " + n_assignments) + " " +
+                                    "<label for=" + label_name + ">ID: </label>".replace("ID", "Assignment " + n_assignments + " Name") +
+                                    "<input class='assignmentName' type='text' name='assignmentName' placeholder='For example: Report'> " + " " + "--" + " " +
                                     "<input class='obtainedScore' type='text' name='obtainedScore'> " + " " +
                                     "<span>% Out Of</span>" + " " +
                                     "<input class='totalScore' type='text' name='totalScore'>" + " " + 
@@ -32,7 +33,8 @@
             // 每调用一次就重置label和input
             var subjectForm = document.getElementById("details")
             subjectForm.innerHTML = "<li class = 'ass1'>" +
-                                        "<label for='ass1'>Assignment 1:</label> " +
+                                        "<label for='ass1'>Assignment 1 Name:</label> " +
+                                        "<input class='assignmentName' type='text' name='assignmentName' placeholder='For example: Report'> " + " " + "--" + " " +
                                         "<input id='obtainedScore' type='text' name='obtainedScore'>" + " " +
                                         "<span>% Out Of</span>" + " " +
                                         "<input id='totalScore' type='text' name='totalScore'>" + " " +
