@@ -24,12 +24,44 @@ const getIndex = async(req, res) => {
     }
 }
 
+// GET the profile of a customer
 const getPortfolio = async(req, res) => {
     const customer = await Customer.findOne({ "email": req.session.email }).lean()
     res.render('portfolio', { "thiscustomer": customer })
 }
 
+// GET change informaiton page
+const changeInfoGet = async(req, res) => {
+    const customer = await Customer.findOne({ "email": req.session.email }).lean()
+    res.render('change-info', { "thiscustomer": customer })
+}
+
+// POST change informaiton page
+const changeInfoPost = async(req, res) => {
+    await Customer.updateOne({ "email": req.session.email }, { "nickName": req.body.nickName}).lean()
+    const customer = await Customer.findOne({ "email": req.session.email }).lean()
+    res.render('changeOutcome', { "message": "Nick name changed.", "thiscustomer": customer })
+}
+
+// GET change password 
+const changePasswordGet = async(req, res) => {
+    const customer = await Customer.findOne({ "email": req.session.email }).lean()
+    res.render('change-password', { "thiscustomer": customer })
+}
+
+// POST change password 
+const changePasswordPost = async(req, res) => {
+    const customer = await Customer.findOne({ "email": req.session.email }).lean()
+    var oneCustomer = new Customer();
+    var passw = oneCustomer.generateHash(req.body.password2)
+    await Customer.findOneAndUpdate({ "email": req.session.email }, { "password": passw }).lean()
+    res.render('changeOutcome', { "message": "Password changed.","thiscustomer": customer })
+}
 module.exports = {
     getIndex,
-    getPortfolio
+    getPortfolio,
+    changeInfoGet,
+    changeInfoPost,
+    changePasswordGet,
+    changePasswordPost,
 }

@@ -13,6 +13,14 @@ customerRouter.get("/", customerController.getIndex)
 
 customerRouter.get('/portfolio', utilities.isLoggedIn, customerController.getPortfolio)
 
+customerRouter.get('/change-password', utilities.isLoggedIn, customerController.changePasswordGet)
+
+customerRouter.post('/change-password', utilities.isLoggedIn, customerController.changePasswordPost)
+
+customerRouter.get('/change-info', utilities.isLoggedIn, customerController.changeInfoGet)
+
+customerRouter.post('/change-info', utilities.isLoggedIn, customerController.changeInfoPost)
+
 customerRouter.get("/login", (req, res) => {
     res.render('login', { layout: 'login-layout', message: req.flash('loginMessage') });
 })

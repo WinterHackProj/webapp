@@ -9,7 +9,8 @@ modified by Yifei Wang --}}
 			<span>use your email for registration</span>
 			<input type="text" name="nickName" placeholder="nickName" required/>
 			<input type="email" name="email" placeholder="Email" required/>
-			<input type="password" name="password" placeholder="Password" required/>
+			<span style="color: #374fd6;">Only 5-10 letters or numbers are allowed.</span>
+			<input type="password" name="password" pattern="[A-Za-z0-9]{5,10}" placeholder="Password" required/>
 			<button type="submit">Sign Up</button>
 		</form>
 	</div>
