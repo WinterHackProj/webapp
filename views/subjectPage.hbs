@@ -49,6 +49,31 @@
         function updateAlert(){
             alert("Successfully update your Overall Target Grade")
         }
+        function confirm(){
+            // check whether the input values are valid
+            var inputScores = document.getElementById("details").getElementsByClassName("obtainedScore")
+            var inputPercentage = document.getElementById("details").getElementsByClassName("totalScore")
+            var sumScores = 0
+            const alertString = "Invalid input! Please check: \n" +
+            "1. your score for each assignment should not be more than its percentage.\n" +
+            "2. your percentages for all assignments should add up to 100%. [eg. A1:40% A2:60%]"
+            for (var i=0;i<inputScores.length;i++){
+                if (parseFloat(inputScores[i].value)>parseFloat(inputPercentage[i].value)){
+                    alert(alertString)
+                    return false
+                }
+                sumScores += parseFloat(inputPercentage[i].value)
+            }
+            if (sumScores!=100){
+                alert(alertString)
+                console.log("----")
+                return false
+            }
+            else{
+                return true
+            }
+            
+        }
     </script>
     <body onload="initialise()"></body>
     <div class='subjectInfo'>
@@ -86,7 +111,7 @@
             </ul>
             <input type="hidden" name="subjectId" value={{gradeInfo.subjectId}}>
             <input type="hidden" name="overallTarget" value={{subjectInfo.target}}>
-            <button type="submit" class="btn submit-btn">Calculate Now</button>
+            <button type="submit" class="btn submit-btn" onclick="return confirm()">Calculate Now</button>
         </form>
     </div>
 </section>
