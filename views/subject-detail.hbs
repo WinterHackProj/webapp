@@ -23,7 +23,18 @@ Modified by Yifei Wang on 15 Jul, 2021 --}}
             document.getElementById("score").value = scoreList
             document.getElementById("target").value = targetList
         }
+        function checkTarget() {
+            var target = document.getElementsByClassName("tar")
+            var perccentage = document.getElementsByClassName("per")
+            var assignmentName = document.getElementsByClassName("ass")
+            for(var i = 0; i < target.length; i++){
+                if(target[i].innerHTML.localeCompare('N/A') != 0 && Number(target[i].innerHTML) > Number(perccentage[i].innerHTML) ) {
+                    alert("Unfortunately, your target socre cannot be achieved in " + assignmentName[i].innerHTML + ". Good luck!")
+                }
+            }
+        }
     </script>
+    <body onload="checkTarget()"></body>
 
     <ul class="responsive-table">
         <li class="table-header">
@@ -34,29 +45,21 @@ Modified by Yifei Wang on 15 Jul, 2021 --}}
         </li>
         {{#each assignmentInfo}}
         <li onload="checkTarget()" class="table-row" >
-            <div class="col col-1" data-label="Assignment Name" id="ass">{{this.name}}</div>
-            <div class="col col-2" data-label="Percentage" id="per">{{this.percentage}}</div>
+            <div class="col col-1 ass" data-label="Assignment Name" id="ass">{{this.name}}</div>
+            <div class="col col-2 per" data-label="Percentage" id="per">{{this.percentage}}</div>
             {{#if this.current_score}}
                 <div class="col col-3" data-label="My Score" id="sco">{{this.current_score}}</div>
             {{else}}
                 <div class="col col-3" data-label="My Score" id="sco">N/A</div>
             {{/if}}
             {{#if this.target}}
-                <div class="col col-4" data-label="Target" id="tar">{{this.target}}</div>
+                <div class="col col-4 tar" data-label="Target" id="tar">{{this.target}}</div>
             {{else}}
-                <div class="col col-4" data-label="Target" id="tar">N/A</div>
+                <div class="col col-4 tar" data-label="Target" id="tar">N/A</div>
             {{/if}}
         </li>
         <script>
-            function checkTarget() {
-            var target = document.getElementById("tar").value
-            var perccentage = document.getElementById("percentage").value
-            alert(target)
-            if(target.localeCompare('N/A') != 0 && target > perccentage ) {
-                alert(";)")
-            }
-        }
-        checkTarget()
+
         </script>
         {{/each}}
     </ul>
