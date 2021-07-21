@@ -44,9 +44,10 @@ The website we develop in this project is mainly used to calculate the score tha
 * Handlebar
 
 ## How to access our database
-we use MongoAtlas to store user information.<br />
-This is our mongoDB connection string: mongodb+srv://Michael:1234@cluster0.30bnt.mongodb.net/WAM_Calculator?retryWrites=true&w=majority <br />
-you can download MongoDB compass and type this string to connect to our database.
+* We use MongoAtlas to store user information.<br />
+Here is our mongoDB connection string:
+`mongodb+srv://Michael:1234@cluster0.30bnt.mongodb.net/WAM_Calculator?retryWrites=true&w=majority` <br />
+you can download **`MongoDB compass`** and type this string to connect to our database.
 Our database name is: **`WAM_Calculator`**<br />
 Also, you need to create a new file call `.env` in your local computer and type the following code in it:
 **`MONGO_USERNAME=Michael`**<br />
