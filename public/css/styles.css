@@ -398,6 +398,10 @@ a {
     background-color: white;
 }
 
+.subjectInfo li {
+    margin-bottom: 20px;
+}
+
 @media screen and (max-width: 640px) {
     /* page layout for phones */
     body {
