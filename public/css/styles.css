@@ -152,6 +152,9 @@ footer {
 
 .category-container p {
     margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #add-subject-link {
@@ -162,6 +165,10 @@ footer {
     font-size: var(--text-big);
     float: right;
     margin-right: 10px;
+}
+
+.index-subject-nam {
+    overflow: scroll;
 }
 
 .form-container {

@@ -1,13 +1,11 @@
 {{#each subjectOnIndex}}
     <a href="/subject/{{this._id}}"><div class="category-container">
         <h1>{{this.subject_code}}</h1>
-        <p>{{this.subject_name}}</p>
-        <i class="fas fa-arrow-circle-right subject-arrow"></i> 
+        <p class="index-subject-name">{{this.subject_name}}<i class="fas fa-arrow-circle-right subject-arrow"></i></p>
     </div></a>
 {{/each}}
 <a id="add-subject-link" href="/subject/add-subject"><div class="category-container">
     <h1>Add Subject</h1>
-    <p></p>
     <i class="fas fa-plus-circle subject-arrow"></i>
 </div></a>
 

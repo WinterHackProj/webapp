@@ -103,7 +103,6 @@ const doCalculation = async(req, res) => {
     try {
         const customer = await Customer.findOne({ "email": req.session.email }).lean()
         const subjectInfo = await Subject.findOne({ "_id": req.body.subjectId }).lean()
-        console.log(req.body)
         var indicesEmpty = []
         var assignmentNames = req.body.assignmentName
         var obtainedScore = req.body.obtainedScore
@@ -112,7 +111,7 @@ const doCalculation = async(req, res) => {
         var overallTarget = req.body.overallTarget
         var sumScore = 0
         var totalRemaining = 0
-        console.log("计算前数据: " + obtainedScore)
+
         for (var i = 0; i < obtainedScore.length; i++) {
             if (!obtainedScore[i]) {
                 indicesEmpty.push(i)
@@ -121,18 +120,12 @@ const doCalculation = async(req, res) => {
                 sumScore += parseFloat(obtainedScore[i])
             }
         }
-        console.log("indices_empty: " + indicesEmpty)
-        console.log("sumScore: " + sumScore)
-        console.log("totalRemaining: " + totalRemaining)
 
         var requiredEach = overallTarget - sumScore
-        console.log("requiredEach: " + requiredEach)
+
         for (var i = 0; i < indicesEmpty.length; i++) {
             targetScore[indicesEmpty[i]] = allocateRemainingScore(requiredEach, totalScore[indicesEmpty[i]], totalRemaining)
         }
-        console.log("计算后数据: " + obtainedScore)
-
-        console.log(targetScore)
         var assignmentInfo = []
         var allAssignments = []
 
@@ -149,7 +142,6 @@ const doCalculation = async(req, res) => {
             await Subject.updateOne({ "_id": req.body.subjectId }, { "assignments": allAssignments }).lean()
             await assignment.save()
         }
-        console.log(assignmentInfo)
 
         res.render('subject-detail', { "subjectInfo": subjectInfo, "thiscustomer": customer, "assignmentInfo": assignmentInfo })
     } catch (err) {
