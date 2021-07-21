@@ -6,10 +6,6 @@ const Customer = customer.Customer
 const CustomerSubject = customer.CustomerSubject
 const subjectAssignment = subject.subjectAssignment
 
-function checkValidity(scoreObject) {
-    console.log(scoreObject)
-    return 0
-}
 
 function allocateRemainingScore(requiredEach, totalForThisAssignment, totalForRemainingAssignments) {
     var ratio = totalForThisAssignment / totalForRemainingAssignments
