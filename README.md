@@ -16,7 +16,7 @@
 
 | Name | Student ID| Task | State |
 | :---         |     :---:      |     :---:      |          ---: |
-| Yu-Wen Michael Zhang  |1089117| Authentication of users, database sechema and connections|  Done |
+| Yu-Wen Michael Zhang  |1089117| Authentication of users, database schema and connections|  Done |
 
 
 ## Link To Our Website
