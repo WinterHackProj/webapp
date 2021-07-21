@@ -7,7 +7,7 @@
 * [Link to our website](#link-to-our-website)
 * [General Info](#general-info)
 * [Detailed Info](#detailed-info)
-* [Technologies](#technologies)
+* [Frameworks and tools](#frameworks-and-tools)
 * [Instructions of Using code](#instructions-of-Using-code)
 * [How to access our database](#how-to-access-our-database)
 
@@ -30,7 +30,7 @@ The website we develop in this project is mainly used to calculate the score tha
 ## Detailed info
 * This website needs user to login and register so that the user can access the full functionalities. We use **passport.js** to authenticate user and use **bcrypt** to encrypt user's password, which makes our website more securer. <br />
 
-## Technologies
+## Frameworks and tools
 * NodeJs 14.16.X
 * MongoDB Atlas
 * Heroku 
