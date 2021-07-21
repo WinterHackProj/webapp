@@ -44,7 +44,7 @@ Modified by Yifei Wang on 15 Jul, 2021 --}}
             <div class="col col-4"><b>TARGET</b></div>
         </li>
         {{#each assignmentInfo}}
-        <li onload="checkTarget()" class="table-row" >
+        <li class="table-row" >
             <div class="col col-1 ass" data-label="Assignment Name" id="ass">{{this.name}}</div>
             <div class="col col-2 per" data-label="Percentage" id="per">{{this.percentage}}</div>
             {{#if this.current_score}}

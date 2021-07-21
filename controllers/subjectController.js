@@ -130,7 +130,7 @@ const doCalculation = async(req, res) => {
             assignmentEntity.name = assignmentNames[i]
             assignmentEntity.percentage = totalScore[i]
             assignmentEntity.current_score = obtainedScore[i]
-            assignmentEntity.target = targetScore[i]
+            assignmentEntity.target = Math.round((Number(targetScore[i]) + Number.EPSILON))
             assignmentInfo.push(assignmentEntity)
             var assignment = new Assignment(assignmentEntity)
             var assignmentRecord = new subjectAssignment({ assignmentId: assignment._id })
@@ -159,7 +159,6 @@ const getEachSubject = async(req, res) => {
                 var assignmentId = allAssignments[i].assignmentId
                 assignmentInfo.push(await Assignment.findOne({ "_id": assignmentId }).lean())
             }
-            console.log(assignmentInfo)
         }
         req.session.subjectId = req.params._id
         res.render('subject-detail', { "subjectInfo": subjectInfo, "thiscustomer": customer, "assignmentInfo": assignmentInfo })
@@ -180,7 +179,6 @@ const addScore = async(req, res) => {
         var assLength = assignList.length
         var subjectId = req.body.subject
         var gradeInfo = { assignList, percentList, scoresList, targetsList, assLength, subjectId }
-        console.log(gradeInfo)
 
         res.render('subjectPage', { "subjectInfo": subjectInfo, "thiscustomer": customer, "gradeInfo": gradeInfo })
     } catch (err) {
