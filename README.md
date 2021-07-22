@@ -56,3 +56,17 @@ This PASSPORT_KEY will allow you to use passport.js while you try to run our cod
 
 ## How we achieve our calculation process
 We calculate the sum of the user's known assignment scores and determine how close the user is to it based on the target score set by the user, and calculate how many points each assignment needs to earn on average to reach the target score among the unentered or upcoming assignment scores.
+
+Let's say there are 3 assignments in total for a subject A, one of them is known. The other two of them will be estimated to see how the target can be reached:
+A1: 20/30
+A2: X/30
+A3: Y/40
+Target: 80, where X is the estimated score of A2, Y is the estimated score of A3
+
+Step1: X+Y = Target-SumOfKnownScores = 80-20 = 60;
+Step2: PercentageLeft = 100-TotalPercentageOfKnownScores = 100-30 = 70;
+Step3: RatioA2 = PercentageA2/PercentageLeft = 30/70;
+       RatioA3 = PercentageA3/PercentageLeft = 40/70;
+Step4: X = RatioA2*(X+Y) = 3/7*60 = 25.71;
+       Y = RatioA3*(X+Y) = 4/7*60 = 34.29;
+Therefore, 25.71 and 34.29 are the estimated target for A2 and A3 computed by our calculator.
