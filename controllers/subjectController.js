@@ -107,6 +107,12 @@ const doCalculation = async(req, res) => {
         var overallTarget = req.body.overallTarget
         var sumScore = 0
         var totalRemaining = 0
+        if (typeof(assignmentNames)=="string"){
+            assignmentNames = new Array(assignmentNames)
+            obtainedScore = new Array(obtainedScore)
+            targetScore = new Array(targetScore)
+            totalScore = new Array(totalScore)
+        }
 
         for (var i = 0; i < obtainedScore.length; i++) {
             if (!obtainedScore[i]) {
@@ -142,7 +148,6 @@ const doCalculation = async(req, res) => {
             await Subject.updateOne({ "_id": req.body.subjectId }, { "assignments": allAssignments }).lean()
             await assignment.save()
         }
-
         res.render('subject-detail', { "subjectInfo": subjectInfo, "thiscustomer": customer, "assignmentInfo": assignmentInfo })
     } catch (err) {
         console.log(err)

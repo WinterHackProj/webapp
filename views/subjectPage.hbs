@@ -21,11 +21,11 @@
             var content = document.createElement('li')
             content.setAttribute("class", label_name)
             content.innerHTML = "<label for=" + label_name + ">ID: </label>".replace("ID", "Assignment " + n_assignments + " Name") +
-                                    "<input class='assignmentName' type='text' name='assignmentName' placeholder='For example: Report' required> " + " " + "--" + " " +
-                                    "<input class='obtainedScore' type='number' step='0.01' name='obtainedScore'> " + " " +
-                                    "<span>% Out Of</span>" + " " +
-                                    "<input class='totalScore' type='number' step='0.01' name='totalScore' required>" + " " + 
-                                    "<span>%</span>" + " " +
+                                    "<input class='assignmentName' type='text' name='assignmentName' placeholder='For example: Report' required> " +
+                                    "<input class='obtainedScore' type='number' step='0.01' name='obtainedScore'> " +
+                                    "<span>% Out Of</span>" +
+                                    "<input class='totalScore' type='number' step='0.01' name='totalScore' required>" +
+                                    "<span>%</span>" +
                                     "<button id=" + label_name + " class=\"bin-btn\" onclick=\"remove_ass(\'" + label_name + "\');\"><i class=\"fas fa-trash-alt bin-icon\"></i></button>"
             subjectForm.appendChild(content)
                                     
@@ -36,15 +36,7 @@
         function clearAssignments(){
             // 每调用一次就重置label和input
             var subjectForm = document.getElementById("details")
-            subjectForm.innerHTML = "<li class = 'ass1'>" +
-                                        "<label for='ass1'>Assignment 1 Name:</label> " +
-                                        "<input class='assignmentName' type='text' name='assignmentName' placeholder='For example: Report' required> " + " " + "--" + " " +
-                                        "<input class='obtainedScore' type='number' step='0.01' name='obtainedScore'>" + " " +
-                                        "<span>% Out Of</span>" + " " +
-                                        "<input class='totalScore' type='number' step='0.01' name='totalScore' required>" + " " +
-                                        "<span>%</span>" + " "  +
-                                        "<button id='ass1' class=\"bin-btn\" onclick=\"remove_ass('ass1');\"><i class=\"fas fa-trash-alt bin-icon\"></i></button>" +
-                                    "</li>"
+            subjectForm.innerHTML = ""
         }
         function updateAlert(){
             alert("Successfully update your Overall Target Grade")
@@ -81,18 +73,6 @@
         <p>Subject Name: <b>{{subjectInfo.subject_name}}</b></p>
         <p>Credit Point: <b>{{subjectInfo.credit}}</b></p>
         <p>Overall Target Grade: <b>{{subjectInfo.target}}</b></p>
-        {{!-- <form action="" method = "post">
-            <label for = {{subjectInfo.subject_code}}><b>Change</b> your <b>Overall Target Grade</b> for <b>{{subjectInfo.subject_code}}</b>: </label>
-            <select name = {{subjectInfo.subject_code}} id = {{subjectInfo.subject_code}}>
-                <option value="H1 80%-100%">H1 80%-100%</option>
-                <option value="H2A 75%-79%">H2A 75%-79%</option>
-                <option value="H2B 70%-74%">H2B 70%-74%</option>
-                <option value="H3 65%-69%">H3 65%-69%</option>
-                <option value="P 50%-64%" selected = "selected">P 50%-64%</option>
-            </select>
-            <br><br>
-            <input type="submit" value="Save Your Target"  onclick="updateAlert()">
-        </form> --}}
         <br>
         <h3>Estimate your overall grades below: <small><a href="/subject/calcDescription">(Click here to read more details)</a></small></h3>
         <button class="submit-btn change-info" style="margin-right:6px;" onclick="addAssignment()">Add New</button>
@@ -100,14 +80,6 @@
         
         <form action="calc" method="post">
             <ul id="details">
-                {{!-- <li class = "ass1" list-style="none">
-                    <label for='ass1'>Assignment 1:</label>
-                    <input id='ass1' type='text' name='obtainedScore'>
-                    <span>% Out Of</span>
-                    <input id='ass1' type='text' name='totalScore'>
-                    <span>%</span>
-                    <button id='ass1' onclick="remove_ass('ass1');"><img src="../image/cancel.png"></button>
-                </li> --}}
             </ul>
             <input type="hidden" name="subjectId" value={{gradeInfo.subjectId}}>
             <input type="hidden" name="overallTarget" value={{subjectInfo.target}}>
