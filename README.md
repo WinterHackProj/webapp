@@ -10,6 +10,7 @@
 * [Frameworks and tools](#frameworks-and-tools)
 * [Instructions of Using code](#instructions-of-Using-code)
 * [How to access our database](#how-to-access-our-database)
+* [How we achieve our calculation process](#how-we-achieve-our-calculation-process)
 
 
 ## Team Members
@@ -17,6 +18,7 @@
 | Name | Student ID| Task | State |
 | :---         |     :---:      |     :---:      |          ---: |
 | Yu-Wen Michael Zhang  |1089117| Authentication of users, database schema and connections|  Done |
+| Nuoda Yang  |1074426| Implement the features of adding assignment scores and the calculation process|  Done |
 
 
 ## Link To Our Website
@@ -51,4 +53,4 @@ Also, you will need to create a new file call `.env` in your local computer so t
 **`PASSPORT_KEY=info30005secretkey`**</br>
 This PASSPORT_KEY will allow you to use passport.js while you try to run our code.
 
-
+## How we achieve our calculation process
