@@ -130,7 +130,11 @@ const doCalculation = async(req, res) => {
             assignmentEntity.name = assignmentNames[i]
             assignmentEntity.percentage = totalScore[i]
             assignmentEntity.current_score = obtainedScore[i]
-            assignmentEntity.target = Math.round((Number(targetScore[i]) + Number.EPSILON))
+            if (!isNaN(targetScore[i])) {
+                assignmentEntity.target = Math.round((Number(targetScore[i]) + Number.EPSILON))
+            } else {
+                assignmentEntity.target = targetScore[i]
+            }
             assignmentInfo.push(assignmentEntity)
             var assignment = new Assignment(assignmentEntity)
             var assignmentRecord = new subjectAssignment({ assignmentId: assignment._id })
