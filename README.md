@@ -11,7 +11,7 @@
 * [Instructions of Using code](#instructions-of-Using-code)
 * [How to access our database](#how-to-access-our-database)
 * [How we achieve our calculation process](#how-we-achieve-our-calculation-process)
-
+* [Image Info](#image-info)
 
 ## Team Members
 
@@ -66,3 +66,6 @@ Step2: PercentageLeft = 100-TotalPercentageOfKnownScores = 100-30 = 70;<br />
 Step3: RatioA2 = PercentageA2/PercentageLeft = 30/70; RatioA3 = PercentageA3/PercentageLeft = 40/70;<br />
 Step4: X = RatioA2*(X+Y) = 3/7x60 = 25.71; Y = RatioA3*(X+Y) = 4/7x60 = 34.29;<br />
 Therefore, 25.71 and 34.29 are the estimated target for A2 and A3 computed by our calculator.
+
+## Image Info
+The favicon image is from https://www.pinterest.com.au/pin/57350595241878813/.
