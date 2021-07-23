@@ -9,6 +9,7 @@
 * [Detailed Info](#detailed-info)
 * [Frameworks and tools](#frameworks-and-tools)
 * [Instructions of Using code](#instructions-of-Using-code)
+* [Test account](#test-account)
 * [How to access our database](#how-to-access-our-database)
 * [How we achieve our calculation process](#how-we-achieve-our-calculation-process)
 * [Future Improvement](#future-improvement)
@@ -50,6 +51,10 @@ The website we developed in this project is mainly used to calculate the score t
 
 ## Instructions of Using code
 Clone this repository and install all the dependencies in **package.json** and type **npm start** in terminal to run the code. However, you may not be able to run these codes because you cannot access our database. If you intend to do so, we have provide one of our username and password. And you will need to set a passport key, which could be anything you want. Please refer to here: [How to access our database](#how-to-access-our-database).
+
+## Test account
+Account email: **test@test.com** <br />
+Account password: **test12345** <br />
 
 ## How to access our database
 We use MongoAtlas to store user information.<br />
