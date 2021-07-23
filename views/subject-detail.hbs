@@ -35,16 +35,22 @@ Modified by Yifei Wang on 15 Jul, 2021 --}}
                     isNumber++
                 }
             }
+            // total final score is higher than overall target score
             if (totalScore > overallTarget.value || totalScore == overallTarget.value) {
                 alert("congratulations! You achieved your target score now!!!")
             }
 
+            // final score is less than overall target score
             if (isNumber == myScore.length && totalScore < overallTarget.value) {
                 alert("Your final score is " + totalScore + ". Unfortunately, your target socre cannot be achieved, Good luck!")
             }
-            if(target.length == 1 && target[0].innerHTML.localeCompare('N/A') == 0) {
+
+            // 1. not initialised 2. there is only one assignment and the score is already filled in, estimated score is N/A
+            if( assignmentName[0].innerHTML != '' && Number(myScore[0].innerHTML) < Number(overallTarget.innerHTML) && target.length == 1 && target[0].innerHTML.localeCompare('N/A') == 0) {
                 alert("Unfortunately, your target socre cannot be achieved in " + assignmentName[0].innerHTML + ". Good luck!")
             }
+
+            //check whether the target score is achievable when the score for each assignment are not fully filled in           
             for(var i = 0; i < target.length; i++){
                 if(target[i].innerHTML.localeCompare('N/A') != 0 && Number(target[i].innerHTML) > Number(perccentage[i].innerHTML) ) {
                     alert("Unfortunately, your target socre cannot be achieved in " + assignmentName[i].innerHTML + ". Good luck!")
