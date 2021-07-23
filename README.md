@@ -36,7 +36,8 @@ main page:
 https://winterhack-valkyrie.herokuapp.com
 
 ## Link To the Presentation Video
-
+Promotional Video: https://youtu.be/C8UdwksDbeI
+Presentation: https://youtu.be/-Pkdv0b_HPw
 ## General info
 The website we developed in this project is mainly used to calculate the score that the user need to achieve in every assignment based on a target overall score the user set in the application.
 
