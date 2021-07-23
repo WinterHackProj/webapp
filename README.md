@@ -79,6 +79,6 @@ Therefore, 25.71 and 34.29 are the estimated target for A2 and A3 computed by ou
 ## Future Improvement
 * Subject details (subject name, overall target score etc.) cannot be changed once you added the subject in homepage.
 * Add overall WAM calculation based on the current added subjects in homepage.
-* 
+
 ## Image Reference
 The favicon image is from https://www.pinterest.com.au/pin/57350595241878813/.
