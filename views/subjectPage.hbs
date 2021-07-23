@@ -21,9 +21,9 @@
             var content = document.createElement('li')
             content.setAttribute("class", label_name)
             content.innerHTML = "<label for=" + label_name + ">ID: </label>".replace("ID", "Assignment " + n_assignments + " Name") +
-                                    "<input class='assignmentName' type='text' name='assignmentName' placeholder='For example: Report' required> " +
+                                    "<input class='assignmentName' type='text' name='assignmentName' placeholder='For example: Report' required> -- " +
                                     "<input class='obtainedScore' type='number' step='0.01' name='obtainedScore'> " +
-                                    "<span>% Out Of</span>" +
+                                    "<span>% Out Of </span>" +
                                     "<input class='totalScore' type='number' step='0.01' name='totalScore' required>" +
                                     "<span>%</span>" +
                                     "<button id=" + label_name + " class=\"bin-btn\" onclick=\"remove_ass(\'" + label_name + "\');\"><i class=\"fas fa-trash-alt bin-icon\"></i></button>"
@@ -74,7 +74,7 @@
         <p>Credit Point: <b>{{subjectInfo.credit}}</b></p>
         <p>Overall Target Grade: <b>{{subjectInfo.target}}</b></p>
         <br>
-        <h3>Estimate your overall grades below: <small><a href="/subject/calcDescription">(Click here to read more details)</a></small></h3>
+        <h3>Estimate your overall grades below: <small><a href="/subject/calcDescription" target="_blank" style="text-decoration: none;"><mark style="color: rgb(252, 54, 54);">(Click here to read more details)</mark></a></small></h3>
         <button class="submit-btn change-info" style="margin-right:6px;" onclick="addAssignment()">Add New</button>
         <button class="submit-btn delete-subject" onclick="clearAssignments()">Clear All</button>
         

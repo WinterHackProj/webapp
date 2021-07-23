@@ -66,6 +66,11 @@ const deleteSubject = async(req, res) => {
     try {
         const customer = await Customer.findOne({ "email": req.session.email }).lean()
         await Customer.updateOne({ "email": req.session.email }, { $pull: { subjects: { "SubjectId": req.session.subjectId } } }).lean()
+        const subject = await Subject.findOne({ "_id": req.session.subjectId }).lean()
+        const assignment = subject.assignments
+        for (let i = 0; i < assignment.length; i++) {
+            await Assignment.deleteOne({ "_id": assignment[i].assignmentId }).lean()
+        }
         await Subject.deleteOne({ "_id": req.session.subjectId }).lean()
         return res.render('deleteSubject', { "thiscustomer": customer })
     } catch (err) {
@@ -107,7 +112,7 @@ const doCalculation = async(req, res) => {
         var overallTarget = req.body.overallTarget
         var sumScore = 0
         var totalRemaining = 0
-        if (typeof(assignmentNames)=="string"){
+        if (typeof(assignmentNames) == "string") {
             assignmentNames = new Array(assignmentNames)
             obtainedScore = new Array(obtainedScore)
             targetScore = new Array(targetScore)
@@ -128,6 +133,12 @@ const doCalculation = async(req, res) => {
         for (var i = 0; i < indicesEmpty.length; i++) {
             targetScore[indicesEmpty[i]] = allocateRemainingScore(requiredEach, totalScore[indicesEmpty[i]], totalRemaining)
         }
+
+
+        for (let i = 0; i < subjectInfo.assignments.length; i++) {
+            await Assignment.deleteOne({ "_id": subjectInfo.assignments[i].assignmentId }).lean()
+        }
+
         var assignmentInfo = []
         var allAssignments = []
 
