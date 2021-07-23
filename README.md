@@ -24,6 +24,12 @@
 | Hu Chen  |1207426| Adding, removing assignment task component and score representations |  Done |
 | Yifei Wang  |1001686| UI Design and front-end UI development |  Done |
 
+contributor:
+* Yu-Wen Michael Zhang: **yuwenmichael** <br />
+* Hu Chen: **Prestonccc** <br />
+* Nuoda Yang: **NuodaY** <br />
+* Yifei Wang: **andyfadai**, **shahuhuyifei** (Yifei has two accounts)<br />
+
 ## Link To Our Website
 main page:
 https://winterhack-valkyrie.herokuapp.com
@@ -71,6 +77,8 @@ Step4: X = RatioA2*(X+Y) = 3/7x60 = 25.71; Y = RatioA3*(X+Y) = 4/7x60 = 34.29;<b
 Therefore, 25.71 and 34.29 are the estimated target for A2 and A3 computed by our calculator.
 
 ## Future Improvement
-
+* Subject details (subject name, overall target score etc.) cannot be changed once you added the subject in homepage.
+* Add overall WAM calculation based on the current added subjects in homepage.
+* 
 ## Image Reference
 The favicon image is from https://www.pinterest.com.au/pin/57350595241878813/.
