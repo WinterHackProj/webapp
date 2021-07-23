@@ -115,7 +115,6 @@ const doCalculation = async(req, res) => {
         if (typeof(assignmentNames) == "string") {
             assignmentNames = new Array(assignmentNames)
             obtainedScore = new Array(obtainedScore)
-            targetScore = new Array(targetScore)
             totalScore = new Array(totalScore)
         }
 

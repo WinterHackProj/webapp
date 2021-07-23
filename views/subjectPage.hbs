@@ -14,7 +14,6 @@
             }
         }
         function addAssignment() {
-            // 每调用一次就增加label和input
             var subjectForm = document.getElementById("details")
             var n_assignments = subjectForm.getElementsByTagName("label").length + 1
             var label_name= "ass" + n_assignments //ass2, ass3...
@@ -22,9 +21,9 @@
             content.setAttribute("class", label_name)
             content.innerHTML = "<label for=" + label_name + ">ID: </label>".replace("ID", "Assignment " + n_assignments + " Name") +
                                     "<input class='assignmentName' type='text' name='assignmentName' placeholder='For example: Report' required> -- " +
-                                    "<input class='obtainedScore' type='number' step='0.01' name='obtainedScore'> " +
+                                    "<input class='obtainedScore' min='0' max='100' type='number' step='0.01' name='obtainedScore'> " +
                                     "<span>% Out Of </span>" +
-                                    "<input class='totalScore' type='number' step='0.01' name='totalScore' required>" +
+                                    "<input class='totalScore' min='0' max='100' type='number' step='0.01' name='totalScore' required>" +
                                     "<span>%</span>" +
                                     "<button id=" + label_name + " class=\"bin-btn\" onclick=\"remove_ass(\'" + label_name + "\');\"><i class=\"fas fa-trash-alt bin-icon\"></i></button>"
             subjectForm.appendChild(content)
@@ -34,12 +33,8 @@
             document.getElementsByClassName(ass_number)[0].remove();
         }
         function clearAssignments(){
-            // 每调用一次就重置label和input
             var subjectForm = document.getElementById("details")
             subjectForm.innerHTML = ""
-        }
-        function updateAlert(){
-            alert("Successfully update your Overall Target Grade")
         }
         function confirm(){
             // check whether the input values are valid
