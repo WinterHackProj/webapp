@@ -11,7 +11,9 @@
 * [Instructions of Using code](#instructions-of-Using-code)
 * [How to access our database](#how-to-access-our-database)
 * [How we achieve our calculation process](#how-we-achieve-our-calculation-process)
-* [Image Info](#image-info)
+* [Future Improvement](#future-improvement)
+* [Image Reference](#image-reference)
+* [Link To the Presentation Video](#link-to-the-presentation-video)
 
 ## Team Members
 
@@ -26,7 +28,8 @@
 main page:
 https://winterhack-valkyrie.herokuapp.com
 
-## Link To the 
+## Link To the Presentation Video
+
 ## General info
 The website we developed in this project is mainly used to calculate the score that the user need to achieve in every assignment based on a target overall score the user set in the application.
 
@@ -67,5 +70,7 @@ Step3: RatioA2 = PercentageA2/PercentageLeft = 30/70; RatioA3 = PercentageA3/Per
 Step4: X = RatioA2*(X+Y) = 3/7x60 = 25.71; Y = RatioA3*(X+Y) = 4/7x60 = 34.29;<br />
 Therefore, 25.71 and 34.29 are the estimated target for A2 and A3 computed by our calculator.
 
-## Image Info
+## Future Improvement
+
+## Image Reference
 The favicon image is from https://www.pinterest.com.au/pin/57350595241878813/.
