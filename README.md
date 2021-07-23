@@ -20,13 +20,13 @@
 | Yu-Wen Michael Zhang  |1089117| Authentication of users, database schema and connections|  Done |
 | Nuoda Yang  |1074426| Implement the features of adding assignment scores and the calculation process|  Done |
 | Hu Chen  |1207426| Adding, removing assignment task component and score representations |  Done |
-
+| Yifei Wang  |1001686| UI Design and front-end UI development |  Done |
 
 ## Link To Our Website
 main page:
 https://winterhack-valkyrie.herokuapp.com
 
-
+## Link To the 
 ## General info
 The website we developed in this project is mainly used to calculate the score that the user need to achieve in every assignment based on a target overall score the user set in the application.
 
